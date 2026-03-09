@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MidTide -- Navigating Perimenopause Together</title>
+<meta name="description" content="MidTide connects women navigating perimenopause through peer support, symptom tracking, and expert content. Start your free trial.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+/* ── RESET & BASE ───────────────────────────────────────────── */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --coral:#FF8A65;--coral-dark:#E57350;--coral-light:#FFAB91;
+  --peach:#FFB74D;--peach-light:#FFD180;
+  --teal:#26C6DA;--teal-dark:#00ACC1;--teal-light:#4DD0E1;
+  --dark:#2A2A2A;--gray:#757575;--light-gray:#B0B0B0;
+  --bg:#FAFAFA;--warm:#FFF8F0;--surface:#FFFFFF;--surface-warm:#F5F0EB;
+  --grad-coral:linear-gradient(135deg,#FF8A65,#FFB74D);
+  --grad-teal:linear-gradient(135deg,#26C6DA,#4DD0E1);
+  --shadow-sm:0 2px 8px rgba(0,0,0,0.06);
+  --shadow-md:0 4px 20px rgba(0,0,0,0.08);
+  --shadow-lg:0 12px 40px rgba(0,0,0,0.12);
+  --shadow-btn:0 4px 16px rgba(255,138,101,0.35);
+  --font-display:'Fraunces',Georgia,serif;
+  --font-body:'DM Sans',-apple-system,sans-serif;
+}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:var(--font-body);color:var(--dark);background:var(--bg);overflow-x:hidden;line-height:1.6}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+
+/* ── UTILITY ────────────────────────────────────────────────── */
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.section{padding:100px 0}
+.section-label{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:13px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--teal);background:rgba(38,198,218,0.1);
+  padding:6px 16px;border-radius:100px;margin-bottom:20px;
+}
+.section-title{
+  font-family:var(--font-display);font-size:clamp(32px,5vw,52px);
+  font-weight:600;letter-spacing:-1px;line-height:1.15;
+  color:var(--dark);margin-bottom:20px;
+}
+.section-subtitle{
+  font-size:18px;color:var(--gray);line-height:1.65;max-width:600px;
+}
+.text-center{text-align:center}
+.mx-auto{margin-left:auto;margin-right:auto}
+
+/* ── ANIMATED REVEAL ────────────────────────────────────────── */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:0.1s}
+.reveal-delay-2{transition-delay:0.2s}
+.reveal-delay-3{transition-delay:0.3s}
+.reveal-delay-4{transition-delay:0.4s}
+
+/* ── NAV ────────────────────────────────────────────────────── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  background:rgba(255,255,255,0.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(0,0,0,0.04);
+  transition:box-shadow 0.3s;
+}
+nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.06)}
+.nav-inner{
+  max-width:1200px;margin:0 auto;padding:0 24px;
+  display:flex;align-items:center;justify-content:space-between;height:72px;
+}
+.nav-logo{display:flex;align-items:center;gap:0}
+.nav-logo svg{height:36px;width:auto}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{font-size:15px;font-weight:500;color:var(--gray);transition:color 0.2s}
+.nav-links a:hover{color:var(--dark)}
+.nav-cta{
+  display:inline-flex;align-items:center;
+  padding:10px 24px;border-radius:100px;
+  background:var(--grad-coral);color:white;
+  font-size:14px;font-weight:600;
+  box-shadow:var(--shadow-btn);
+  transition:transform 0.2s,box-shadow 0.2s;
+}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(255,138,101,0.4)}
+.mobile-menu-btn{display:none;background:none;border:none;cursor:pointer;padding:8px}
+.mobile-menu-btn span{display:block;width:24px;height:2px;background:var(--dark);margin:5px 0;transition:0.3s}
+
+/* ── HERO ───────────────────────────────────────────────────── */
+.hero{
+  position:relative;padding:160px 0 120px;
+  background:linear-gradient(175deg,var(--warm) 0%,#FFF5EE 30%,var(--bg) 70%);
+  overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;top:-200px;right:-200px;
+  width:800px;height:800px;border-radius:50%;
+  background:radial-gradient(circle,rgba(38,198,218,0.06) 0%,transparent 70%);
+  pointer-events:none;
+}
+.hero::after{
+  content:'';position:absolute;bottom:-300px;left:-200px;
+  width:900px;height:900px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,138,101,0.05) 0%,transparent 70%);
+  pointer-events:none;
+}
+.hero-inner{
+  display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;
+  max-width:1200px;margin:0 auto;padding:0 24px;position:relative;z-index:1;
+}
+.hero-content{max-width:560px}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:8px 18px;border-radius:100px;
+  background:rgba(38,198,218,0.08);
+  font-size:14px;font-weight:600;color:var(--teal);
+  margin-bottom:24px;
+}
+.hero-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--teal);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.hero-title{
+  font-family:var(--font-display);font-size:clamp(40px,5.5vw,64px);
+  font-weight:600;line-height:1.08;letter-spacing:-2px;
+  color:var(--dark);margin-bottom:20px;
+}
+.hero-title em{font-style:italic;color:var(--coral)}
+.hero-desc{
+  font-size:19px;color:var(--gray);line-height:1.65;margin-bottom:36px;max-width:480px;
+}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.btn-hero{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:16px 32px;border-radius:100px;
+  background:var(--grad-coral);color:white;
+  font-family:var(--font-body);font-size:17px;font-weight:600;
+  box-shadow:var(--shadow-btn);border:none;cursor:pointer;
+  transition:transform 0.2s,box-shadow 0.2s;
+}
+.btn-hero:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(255,138,101,0.45)}
+.btn-secondary{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:16px 28px;border-radius:100px;
+  background:transparent;color:var(--dark);
+  font-family:var(--font-body);font-size:17px;font-weight:500;
+  border:1.5px solid var(--dark);cursor:pointer;
+  transition:all 0.2s;
+}
+.btn-secondary:hover{background:var(--dark);color:white}
+
+/* Hero phone mockup */
+.hero-visual{position:relative;display:flex;justify-content:center;align-items:center}
+.phone-mockup{
+  width:280px;height:580px;
+  background:#1a1a1a;border-radius:44px;padding:12px;
+  box-shadow:0 30px 80px rgba(0,0,0,0.15),0 0 0 1px rgba(255,255,255,0.08) inset;
+  position:relative;z-index:2;
+  transform:perspective(1200px) rotateY(-8deg) rotateX(4deg);
+}
+.phone-screen{
+  width:100%;height:100%;border-radius:34px;overflow:hidden;
+  background:linear-gradient(180deg,var(--warm),var(--bg));
+  position:relative;
+}
+.phone-notch{
+  position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:110px;height:30px;background:#1a1a1a;
+  border-radius:0 0 18px 18px;z-index:10;
+}
+.phone-content{
+  padding:52px 20px 20px;height:100%;overflow:hidden;
+}
+.phone-greeting{font-family:var(--font-display);font-size:20px;font-weight:600;margin-bottom:4px}
+.phone-date{font-size:13px;color:var(--gray);margin-bottom:16px}
+.phone-card{
+  background:white;border-radius:14px;padding:16px;margin-bottom:12px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.05);
+}
+.phone-card-title{font-size:14px;font-weight:600;margin-bottom:6px}
+.phone-card-sub{font-size:12px;color:var(--gray)}
+.phone-btn{
+  display:block;width:100%;padding:10px;border-radius:20px;text-align:center;
+  background:var(--grad-coral);color:white;font-size:13px;font-weight:600;
+  margin-top:10px;
+}
+.phone-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.phone-stat{
+  background:white;border-radius:12px;padding:12px 8px;text-align:center;
+  box-shadow:0 2px 8px rgba(0,0,0,0.05);
+}
+.phone-stat-val{font-size:18px;font-weight:700}
+.phone-stat-label{font-size:10px;color:var(--gray);margin-top:2px}
+
+/* Floating badges around phone */
+.float-badge{
+  position:absolute;background:white;border-radius:14px;padding:12px 18px;
+  box-shadow:0 8px 30px rgba(0,0,0,0.1);
+  font-size:13px;font-weight:600;
+  display:flex;align-items:center;gap:8px;z-index:3;
+  animation:float 4s ease-in-out infinite;
+}
+.float-badge .badge-icon{
+  width:32px;height:32px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;
+}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.float-badge-1{top:60px;right:-20px;animation-delay:0s}
+.float-badge-1 .badge-icon{background:rgba(38,198,218,0.15)}
+.float-badge-2{bottom:100px;left:-30px;animation-delay:1.5s}
+.float-badge-2 .badge-icon{background:rgba(255,138,101,0.15)}
+.float-badge-3{bottom:180px;right:-40px;animation-delay:0.8s}
+.float-badge-3 .badge-icon{background:rgba(255,183,77,0.15)}
+
+/* ── STATS MARQUEE ──────────────────────────────────────────── */
+.stats-bar{
+  background:var(--dark);padding:28px 0;overflow:hidden;position:relative;
+}
+.stats-inner{
+  display:flex;gap:60px;align-items:center;justify-content:center;flex-wrap:wrap;
+  max-width:1200px;margin:0 auto;padding:0 24px;
+}
+.stat-item{display:flex;align-items:center;gap:14px}
+.stat-number{
+  font-family:var(--font-display);font-size:clamp(28px,3vw,38px);
+  font-weight:600;color:white;letter-spacing:-1px;
+}
+.stat-number .accent{color:var(--coral)}
+.stat-text{font-size:14px;color:rgba(255,255,255,0.6);line-height:1.4;max-width:160px}
+.stat-divider{width:1px;height:40px;background:rgba(255,255,255,0.12)}
+
+/* ── PROBLEM ────────────────────────────────────────────────── */
+.problem{background:var(--warm);position:relative}
+.problem::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,138,101,0.2),transparent);
+}
+.problem-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
+}
+.problem-visual{position:relative}
+.problem-quote{
+  font-family:var(--font-display);font-size:clamp(24px,3vw,36px);
+  font-weight:400;line-height:1.4;letter-spacing:-0.5px;
+  color:var(--dark);position:relative;padding-left:32px;
+}
+.problem-quote::before{
+  content:'';position:absolute;left:0;top:4px;bottom:4px;
+  width:4px;border-radius:2px;background:var(--grad-coral);
+}
+.problem-quote em{font-style:italic;color:var(--coral)}
+.problem-cards{display:grid;gap:16px;margin-top:48px}
+.problem-card{
+  display:flex;align-items:flex-start;gap:16px;
+  background:white;border-radius:16px;padding:24px;
+  box-shadow:var(--shadow-sm);border:1px solid rgba(0,0,0,0.03);
+  transition:transform 0.3s,box-shadow 0.3s;
+}
+.problem-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.problem-card-icon{
+  width:48px;height:48px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;font-size:22px;
+}
+.problem-card h4{font-size:16px;font-weight:600;margin-bottom:4px}
+.problem-card p{font-size:14px;color:var(--gray);line-height:1.5}
+
+/* ── FEATURES / THREE PILLARS ───────────────────────────────── */
+.features{background:var(--bg)}
+.features-header{text-align:center;margin-bottom:72px}
+.pillar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.pillar{
+  background:white;border-radius:24px;padding:40px 32px;
+  border:1px solid rgba(0,0,0,0.04);
+  position:relative;overflow:hidden;
+  transition:transform 0.3s,box-shadow 0.3s;
+}
+.pillar:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.pillar::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:4px;
+}
+.pillar:nth-child(1)::before{background:var(--grad-teal)}
+.pillar:nth-child(2)::before{background:var(--grad-coral)}
+.pillar:nth-child(3)::before{background:linear-gradient(135deg,var(--peach),var(--peach-light))}
+.pillar-icon{
+  width:64px;height:64px;border-radius:18px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:28px;margin-bottom:24px;
+}
+.pillar:nth-child(1) .pillar-icon{background:rgba(38,198,218,0.12)}
+.pillar:nth-child(2) .pillar-icon{background:rgba(255,138,101,0.12)}
+.pillar:nth-child(3) .pillar-icon{background:rgba(255,183,77,0.12)}
+.pillar h3{
+  font-family:var(--font-display);font-size:24px;font-weight:600;
+  margin-bottom:12px;letter-spacing:-0.5px;
+}
+.pillar p{font-size:15px;color:var(--gray);line-height:1.65;margin-bottom:20px}
+.pillar-features{list-style:none;display:flex;flex-direction:column;gap:10px}
+.pillar-features li{
+  display:flex;align-items:center;gap:10px;font-size:14px;color:var(--dark);
+}
+.pillar-features li::before{
+  content:'';width:20px;height:20px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+}
+.pillar:nth-child(1) .pillar-features li::before{background:rgba(38,198,218,0.15)}
+.pillar:nth-child(2) .pillar-features li::before{background:rgba(255,138,101,0.15)}
+.pillar:nth-child(3) .pillar-features li::before{background:rgba(255,183,77,0.15)}
+
+/* ── HOW IT WORKS ───────────────────────────────────────────── */
+.how-it-works{
+  background:linear-gradient(180deg,var(--bg),var(--warm));
+  position:relative;
+}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-top:60px}
+.step{text-align:center;position:relative}
+.step::after{
+  content:'';position:absolute;top:36px;left:calc(50% + 40px);
+  width:calc(100% - 80px);height:2px;
+  background:linear-gradient(90deg,var(--coral-light),var(--peach-light));
+}
+.step:last-child::after{display:none}
+.step-num{
+  width:72px;height:72px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-display);font-size:28px;font-weight:600;
+  margin:0 auto 20px;position:relative;z-index:1;
+}
+.step:nth-child(1) .step-num{background:rgba(38,198,218,0.12);color:var(--teal)}
+.step:nth-child(2) .step-num{background:rgba(255,138,101,0.12);color:var(--coral)}
+.step:nth-child(3) .step-num{background:rgba(255,183,77,0.12);color:var(--peach)}
+.step:nth-child(4) .step-num{background:rgba(38,198,218,0.12);color:var(--teal)}
+.step h4{
+  font-family:var(--font-display);font-size:18px;font-weight:600;
+  margin-bottom:8px;letter-spacing:-0.3px;
+}
+.step p{font-size:14px;color:var(--gray);line-height:1.55;max-width:220px;margin:0 auto}
+
+/* ── PRICING ────────────────────────────────────────────────── */
+.pricing{background:white;position:relative}
+.pricing::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(0,0,0,0.06),transparent);
+}
+.pricing-cards{
+  display:grid;grid-template-columns:1fr 1fr;gap:28px;
+  max-width:800px;margin:48px auto 0;
+}
+.price-card{
+  border-radius:24px;padding:40px 32px;position:relative;
+  border:2px solid rgba(0,0,0,0.06);
+  transition:transform 0.3s,box-shadow 0.3s;
+}
+.price-card:hover{transform:translateY(-4px)}
+.price-card.featured{
+  border-color:var(--coral);
+  box-shadow:0 8px 40px rgba(255,138,101,0.15);
+}
+.price-card.featured::before{
+  content:'BEST VALUE';position:absolute;top:-14px;left:50%;transform:translateX(-50%);
+  background:var(--grad-coral);color:white;
+  font-size:11px;font-weight:700;letter-spacing:1px;
+  padding:6px 20px;border-radius:100px;white-space:nowrap;
+}
+.price-name{font-size:16px;font-weight:600;color:var(--gray);margin-bottom:8px}
+.price-amount{
+  font-family:var(--font-display);font-size:48px;font-weight:700;
+  color:var(--dark);letter-spacing:-2px;line-height:1;margin-bottom:4px;
+}
+.price-amount span{font-size:18px;font-weight:400;color:var(--gray);letter-spacing:0}
+.price-period{font-size:14px;color:var(--gray);margin-bottom:24px}
+.price-features{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:32px}
+.price-features li{
+  display:flex;align-items:center;gap:10px;font-size:14px;color:var(--dark);
+}
+.price-check{
+  width:20px;height:20px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:11px;
+}
+.price-check.yes{background:rgba(38,198,218,0.12);color:var(--teal)}
+.price-check.no{background:rgba(0,0,0,0.04);color:var(--light-gray)}
+.price-btn{
+  display:block;width:100%;padding:14px;border-radius:100px;text-align:center;
+  font-family:var(--font-body);font-size:16px;font-weight:600;
+  border:none;cursor:pointer;transition:all 0.2s;
+}
+.price-btn.primary{
+  background:var(--grad-coral);color:white;box-shadow:var(--shadow-btn);
+}
+.price-btn.primary:hover{box-shadow:0 6px 24px rgba(255,138,101,0.4);transform:translateY(-1px)}
+.price-btn.outline{
+  background:transparent;color:var(--dark);border:1.5px solid var(--dark);
+}
+.price-btn.outline:hover{background:var(--dark);color:white}
+.price-note{
+  text-align:center;font-size:14px;color:var(--gray);margin-top:24px;
+}
+
+/* ── BETA SIGNUP ─────────────────────────────────────────────── */
+.beta-section{
+  background:linear-gradient(155deg,#2A2A2A 0%,#1a1a1a 50%,#2A2A2A 100%);
+  padding:100px 0;position:relative;overflow:hidden;
+}
+.beta-section::before{
+  content:'';position:absolute;top:-300px;right:-200px;
+  width:800px;height:800px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,138,101,0.06),transparent 70%);
+  pointer-events:none;
+}
+.beta-section::after{
+  content:'';position:absolute;bottom:-200px;left:-100px;
+  width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(38,198,218,0.05),transparent 70%);
+  pointer-events:none;
+}
+.beta-inner{
+  display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;
+  position:relative;z-index:1;
+}
+.beta-content{color:white}
+.beta-title{
+  font-family:var(--font-display);font-size:clamp(32px,4.5vw,48px);
+  font-weight:600;color:white;line-height:1.15;letter-spacing:-1px;
+  margin-bottom:20px;
+}
+.beta-desc{
+  font-size:18px;color:rgba(255,255,255,0.6);line-height:1.7;
+  max-width:440px;margin-bottom:40px;
+}
+.beta-perks{list-style:none;display:flex;flex-direction:column;gap:16px}
+.beta-perk{display:flex;align-items:center;gap:14px;font-size:15px;color:rgba(255,255,255,0.75)}
+.beta-perk-icon{
+  width:36px;height:36px;border-radius:10px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:16px;
+}
+.beta-card{
+  background:white;border-radius:24px;overflow:hidden;
+  box-shadow:0 20px 60px rgba(0,0,0,0.3);
+}
+.beta-card-header{
+  background:var(--grad-coral);padding:28px 32px;
+}
+.beta-card-header h3{
+  font-family:var(--font-display);font-size:24px;font-weight:600;
+  color:white;margin-bottom:4px;
+}
+.beta-card-header p{font-size:14px;color:rgba(255,255,255,0.8)}
+.beta-form{padding:32px}
+.beta-field{margin-bottom:20px}
+.beta-field label{
+  display:block;font-size:14px;font-weight:600;color:var(--dark);margin-bottom:6px;
+}
+.beta-field input[type="text"],
+.beta-field input[type="email"]{
+  width:100%;height:48px;border:1.5px solid #E0E0E0;border-radius:12px;
+  padding:0 16px;font-size:15px;font-family:var(--font-body);color:var(--dark);
+  background:var(--bg);outline:none;transition:border-color 0.2s,box-shadow 0.2s;
+}
+.beta-field input:focus{border-color:var(--coral);box-shadow:0 0 0 3px rgba(255,138,101,0.08)}
+.beta-field input::placeholder{color:var(--light-gray)}
+.beta-field select{
+  width:100%;height:48px;border:1.5px solid #E0E0E0;border-radius:12px;
+  padding:0 16px;font-size:15px;font-family:var(--font-body);color:var(--dark);
+  background:var(--bg);outline:none;cursor:pointer;
+  appearance:none;-webkit-appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23757575' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 16px center;
+  transition:border-color 0.2s;
+}
+.beta-field select:focus{border-color:var(--coral)}
+.beta-interests{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.beta-chip{cursor:pointer}
+.beta-chip input{display:none}
+.beta-chip span{
+  display:inline-flex;align-items:center;padding:8px 16px;
+  border-radius:100px;font-size:13px;font-weight:500;
+  border:1.5px solid #E0E0E0;color:var(--gray);background:white;
+  transition:all 0.2s;
+}
+.beta-chip input:checked+span{
+  border-color:var(--coral);color:var(--coral);
+  background:rgba(255,138,101,0.08);font-weight:600;
+}
+.beta-chip:hover span{border-color:var(--coral-light)}
+.beta-submit{
+  width:100%;height:52px;border:none;border-radius:26px;
+  background:var(--grad-coral);color:white;
+  font-family:var(--font-body);font-size:17px;font-weight:600;
+  cursor:pointer;box-shadow:var(--shadow-btn);
+  transition:transform 0.2s,box-shadow 0.2s;
+  margin-top:8px;
+}
+.beta-submit:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(255,138,101,0.45)}
+.beta-note{
+  font-size:12px;color:var(--light-gray);text-align:center;margin-top:14px;line-height:1.5;
+}
+.beta-success{
+  padding:48px 32px;text-align:center;
+}
+.beta-success-icon{
+  width:64px;height:64px;border-radius:50%;margin:0 auto 20px;
+  background:rgba(38,198,218,0.12);color:var(--teal);
+  display:flex;align-items:center;justify-content:center;
+  font-size:28px;font-weight:700;
+}
+.beta-success h3{
+  font-family:var(--font-display);font-size:24px;font-weight:600;
+  color:var(--dark);margin-bottom:8px;
+}
+.beta-success p{font-size:15px;color:var(--gray);line-height:1.6}
+
+@media(max-width:1024px){
+  .beta-inner{grid-template-columns:1fr;max-width:540px;margin:0 auto}
+  .beta-content{text-align:center}
+  .beta-desc{margin:0 auto 40px}
+}
+
+/* ── FOOTER ─────────────────────────────────────────────────── */
+footer{
+  background:var(--dark);color:rgba(255,255,255,0.5);
+  padding:60px 0 32px;
+}
+.footer-grid{
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;
+  margin-bottom:48px;
+}
+.footer-brand{max-width:280px}
+.footer-brand svg{height:32px;width:auto;margin-bottom:16px}
+.footer-brand p{font-size:14px;line-height:1.65}
+.footer-col h5{
+  font-size:13px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;
+  color:rgba(255,255,255,0.3);margin-bottom:16px;
+}
+.footer-col a{
+  display:block;font-size:14px;color:rgba(255,255,255,0.5);
+  margin-bottom:10px;transition:color 0.2s;
+}
+.footer-col a:hover{color:white}
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,0.08);
+  padding-top:24px;display:flex;align-items:center;justify-content:space-between;
+  font-size:13px;
+}
+.footer-social{display:flex;gap:16px}
+.footer-social a{
+  width:36px;height:36px;border-radius:50%;
+  background:rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:center;
+  transition:background 0.2s;font-size:16px;
+}
+.footer-social a:hover{background:rgba(255,255,255,0.12)}
+
+/* ── RESPONSIVE ─────────────────────────────────────────────── */
+@media(max-width:1024px){
+  .hero-inner{grid-template-columns:1fr;text-align:center}
+  .hero-content{max-width:100%;margin:0 auto}
+  .hero-desc{margin:0 auto 36px}
+  .hero-actions{justify-content:center}
+  .hero-visual{margin-top:40px}
+  .pillar-grid{grid-template-columns:1fr}
+  .steps{grid-template-columns:repeat(2,1fr)}
+  .step::after{display:none}
+  .problem-grid{grid-template-columns:1fr;gap:48px}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  .section{padding:72px 0}
+  .nav-links{display:none}
+  .mobile-menu-btn{display:block}
+  .stats-inner{flex-direction:column;gap:24px}
+  .stat-divider{width:40px;height:1px}
+  .pricing-cards{grid-template-columns:1fr;max-width:420px}
+  .beta-inner{grid-template-columns:1fr}
+  .beta-card{max-width:480px;margin:0 auto}
+  .footer-grid{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;gap:16px;text-align:center}
+  .steps{grid-template-columns:1fr}
+  .phone-mockup{width:240px;height:500px;transform:none}
+  .float-badge{display:none}
+}
+@media(max-width:480px){
+  .hero{padding:120px 0 80px}
+  .hero-title{letter-spacing:-1px}
+  .pillar{padding:28px 22px}
+}
+</style>
+</head>
+<body>
+
+<!-- ════ NAVIGATION ════ -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <svg width="160" height="40" viewBox="0 0 320 80" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="nav-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#26C6DA"/>
+            <stop offset="50%" style="stop-color:#FFB74D"/>
+            <stop offset="100%" style="stop-color:#FF8A65"/>
+          </linearGradient>
+        </defs>
+        <path d="M 10 40 Q 30 20, 50 40 T 90 40" stroke="url(#nav-grad)" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <circle cx="10" cy="40" r="5" fill="#FF8A65"/>
+        <circle cx="50" cy="40" r="5" fill="#FFB74D"/>
+        <circle cx="90" cy="40" r="5" fill="#26C6DA"/>
+        <text x="110" y="50" font-family="Fraunces, serif" font-size="34" font-weight="700" fill="#2a2a2a" letter-spacing="-1.5">MidTide</text>
+      </svg>
+    </a>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#beta" class="nav-cta">Join the Beta</a>
+    </div>
+    <button class="mobile-menu-btn" aria-label="Menu" onclick="this.classList.toggle('active')">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ════ HERO ════ -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-eyebrow reveal">
+        <span class="dot"></span>
+        Coming soon -- iOS & Android
+      </div>
+      <h1 class="hero-title reveal reveal-delay-1">
+        Navigating<br>perimenopause<br><em>together.</em>
+      </h1>
+      <p class="hero-desc reveal reveal-delay-2">
+        MidTide connects you with women who truly understand -- because they're going through it too. Track symptoms, find your people, and take control of this chapter.
+      </p>
+      <div class="hero-actions reveal reveal-delay-3">
+        <a href="#beta" class="btn-hero">
+          Join the Beta
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#features" class="btn-secondary">Learn More</a>
+      </div>
+    </div>
+    <div class="hero-visual reveal reveal-delay-2">
+      <div class="phone-mockup">
+        <div class="phone-screen">
+          <div class="phone-notch"></div>
+          <div class="phone-content">
+            <div class="phone-greeting">Good morning, Sarah</div>
+            <div class="phone-date">Friday, February 28</div>
+            <div class="phone-card">
+              <div class="phone-card-title">How are you today?</div>
+              <div class="phone-card-sub">You haven't checked in yet</div>
+              <div class="phone-btn">Start Daily Check-In</div>
+            </div>
+            <div class="phone-stats">
+              <div class="phone-stat">
+                <div class="phone-stat-val">4</div>
+                <div class="phone-stat-label">Mood</div>
+              </div>
+              <div class="phone-stat">
+                <div class="phone-stat-val">6.5h</div>
+                <div class="phone-stat-label">Sleep</div>
+              </div>
+              <div class="phone-stat">
+                <div class="phone-stat-val">3</div>
+                <div class="phone-stat-label">Energy</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="float-badge float-badge-1">
+        <div class="badge-icon">92%</div>
+        <div>
+          <div style="font-weight:700;font-size:14px">PeerMatch</div>
+          <div style="font-size:11px;color:var(--gray)">Sarah, London</div>
+        </div>
+      </div>
+      <div class="float-badge float-badge-2">
+        <div class="badge-icon">&#10003;</div>
+        <div>
+          <div style="font-weight:700;font-size:14px">Check-In Done</div>
+          <div style="font-size:11px;color:var(--gray)">Streak: 14 days</div>
+        </div>
+      </div>
+      <div class="float-badge float-badge-3">
+        <div class="badge-icon">&#9829;</div>
+        <div>
+          <div style="font-weight:700;font-size:14px">New Article</div>
+          <div style="font-size:11px;color:var(--gray)">Sleep & HRT</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ STATS BAR ════ -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item reveal">
+      <div class="stat-number">1B<span class="accent">+</span></div>
+      <div class="stat-text">women in menopause worldwide by 2025</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item reveal reveal-delay-1">
+      <div class="stat-number">1 in 3</div>
+      <div class="stat-text">go undiagnosed for over a year</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item reveal reveal-delay-2">
+      <div class="stat-number">$150B</div>
+      <div class="stat-text">annual global economic impact</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item reveal reveal-delay-3">
+      <div class="stat-number">8<span class="accent">%</span></div>
+      <div class="stat-text">of women receive HRT treatment</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ PROBLEM ════ -->
+<section class="problem section">
+  <div class="container">
+    <div class="problem-grid">
+      <div class="problem-visual reveal">
+        <div class="section-label">The Problem</div>
+        <blockquote class="problem-quote">
+          Women don't need to be fixed. They need to be <em>heard, connected,</em> and equipped with the right tools.
+        </blockquote>
+        <div class="problem-cards" style="margin-top:40px">
+          <div class="problem-card reveal reveal-delay-1">
+            <div class="problem-card-icon" style="background:rgba(255,138,101,0.12)">&#128566;</div>
+            <div>
+              <h4>Misdiagnosed & Dismissed</h4>
+              <p>40% of women report symptoms interfere with work weekly. Most are told "it's just stress."</p>
+            </div>
+          </div>
+          <div class="problem-card reveal reveal-delay-2">
+            <div class="problem-card-icon" style="background:rgba(38,198,218,0.12)">&#128557;</div>
+            <div>
+              <h4>Isolated & Unsupported</h4>
+              <p>No single platform combines peer matching with symptom tracking and expert content.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="problem-cards">
+          <div class="problem-card reveal reveal-delay-1">
+            <div class="problem-card-icon" style="background:rgba(255,183,77,0.12)">&#128200;</div>
+            <div>
+              <h4>Fragmented Market</h4>
+              <p>Period trackers don't cover perimenopause. Wellness apps ignore social isolation. Nothing connects all three.</p>
+            </div>
+          </div>
+          <div class="problem-card reveal reveal-delay-2">
+            <div class="problem-card-icon" style="background:rgba(255,138,101,0.12)">&#128176;</div>
+            <div>
+              <h4>$250M+ Opportunity</h4>
+              <p>Global menopause app market growing at 15% CAGR. 75 million women enter perimenopause every year.</p>
+            </div>
+          </div>
+          <div class="problem-card reveal reveal-delay-3">
+            <div class="problem-card-icon" style="background:rgba(38,198,218,0.12)">&#127793;</div>
+            <div>
+              <h4>MidTide Fills the Gap</h4>
+              <p>Purpose-built for ages 35-55. Peer support + tracking + expert content, all in one affordable app.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ FEATURES / THREE PILLARS ════ -->
+<section class="features section" id="features">
+  <div class="container">
+    <div class="features-header">
+      <div class="section-label reveal">Three Pillars</div>
+      <h2 class="section-title reveal reveal-delay-1">Everything you need.<br>One app.</h2>
+      <p class="section-subtitle mx-auto reveal reveal-delay-2">MidTide combines the three things women navigating perimenopause need most -- connection, clarity, and knowledge.</p>
+    </div>
+    <div class="pillar-grid">
+      <div class="pillar reveal">
+        <div class="pillar-icon">&#129309;</div>
+        <h3>PeerMatch</h3>
+        <p>Our matching algorithm connects you 1-on-1 with women who share your symptoms, stage, and location. Real connections, not forums.</p>
+        <ul class="pillar-features">
+          <li>Symptom-based matching algorithm</li>
+          <li>Stage + location overlap scoring</li>
+          <li>Private 1-on-1 messaging</li>
+          <li>Accept or skip at your pace</li>
+        </ul>
+      </div>
+      <div class="pillar reveal reveal-delay-1">
+        <div class="pillar-icon">&#128202;</div>
+        <h3>Symptom Tracker</h3>
+        <p>Daily check-ins build a visual picture of your journey. Track mood, sleep, energy, symptoms, and period -- all in under 60 seconds.</p>
+        <ul class="pillar-features">
+          <li>60-second daily check-in</li>
+          <li>Visual heat map & trend lines</li>
+          <li>26 perimenopause symptoms tracked</li>
+          <li>Exportable Doctor Report (PDF)</li>
+        </ul>
+      </div>
+      <div class="pillar reveal reveal-delay-2">
+        <div class="pillar-icon">&#128218;</div>
+        <h3>Content Hub</h3>
+        <p>Expert-curated articles on HRT, mental health, nutrition, sleep, and relationships -- written specifically for perimenopause.</p>
+        <ul class="pillar-features">
+          <li>75+ expert-curated articles</li>
+          <li>Personalized to your symptoms</li>
+          <li>HRT, sleep, nutrition & more</li>
+          <li>Save & share with connections</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ HOW IT WORKS ════ -->
+<section class="how-it-works section" id="how-it-works">
+  <div class="container">
+    <div class="text-center">
+      <div class="section-label reveal">How It Works</div>
+      <h2 class="section-title reveal reveal-delay-1">Up and running in minutes</h2>
+      <p class="section-subtitle mx-auto reveal reveal-delay-2">No complicated setup. No medical jargon. Just a warm, intuitive experience designed for you.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-num">1</div>
+        <h4>Tell Us Your Story</h4>
+        <p>Select your perimenopause stage, symptoms, and wellness goals. Takes under 2 minutes.</p>
+      </div>
+      <div class="step reveal reveal-delay-1">
+        <div class="step-num">2</div>
+        <h4>Check In Daily</h4>
+        <p>Log mood, sleep, energy, and symptoms in 60 seconds. Watch patterns emerge over time.</p>
+      </div>
+      <div class="step reveal reveal-delay-2">
+        <div class="step-num">3</div>
+        <h4>Find Your People</h4>
+        <p>PeerMatch connects you with women sharing similar experiences. Send a request, start chatting.</p>
+      </div>
+      <div class="step reveal reveal-delay-3">
+        <div class="step-num">4</div>
+        <h4>Learn & Grow</h4>
+        <p>Access expert articles tailored to your symptoms. Share insights with your connections.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ PRICING ════ -->
+<section class="pricing section" id="pricing">
+  <div class="container">
+    <div class="text-center">
+      <div class="section-label reveal">Simple Pricing</div>
+      <h2 class="section-title reveal reveal-delay-1">Start free. Upgrade when ready.</h2>
+      <p class="section-subtitle mx-auto reveal reveal-delay-2">14-day free trial with full access. No credit card required. Cancel anytime.</p>
+    </div>
+    <div class="pricing-cards">
+      <div class="price-card reveal">
+        <div class="price-name">Monthly</div>
+        <div class="price-amount">$7.99<span>/mo</span></div>
+        <div class="price-period">Billed monthly</div>
+        <ul class="price-features">
+          <li><span class="price-check yes">&#10003;</span> Unlimited PeerMatch</li>
+          <li><span class="price-check yes">&#10003;</span> Full symptom dashboard</li>
+          <li><span class="price-check yes">&#10003;</span> Direct messaging</li>
+          <li><span class="price-check yes">&#10003;</span> 75+ expert articles</li>
+          <li><span class="price-check yes">&#10003;</span> Doctor Report PDF</li>
+          <li><span class="price-check yes">&#10003;</span> Ad-free experience</li>
+        </ul>
+        <button class="price-btn outline">Start Free Trial</button>
+      </div>
+      <div class="price-card featured reveal reveal-delay-1">
+        <div class="price-name">Annual</div>
+        <div class="price-amount">$59.99<span>/yr</span></div>
+        <div class="price-period">~$5.00/month -- save 37%</div>
+        <ul class="price-features">
+          <li><span class="price-check yes">&#10003;</span> Everything in Monthly</li>
+          <li><span class="price-check yes">&#10003;</span> Priority PeerMatch</li>
+          <li><span class="price-check yes">&#10003;</span> Early access to features</li>
+          <li><span class="price-check yes">&#10003;</span> Group chat access</li>
+          <li><span class="price-check yes">&#10003;</span> Period tracking</li>
+          <li><span class="price-check yes">&#10003;</span> Save $35.89 per year</li>
+        </ul>
+        <button class="price-btn primary">Start Free Trial</button>
+      </div>
+    </div>
+    <p class="price-note reveal">More affordable than Balance ($110/yr), Midday ($80/yr), and Flo ($60/yr).</p>
+  </div>
+</section>
+
+<!-- ════ BETA SIGNUP ════ -->
+<section class="beta-section" id="beta">
+  <div class="container">
+    <div class="beta-inner">
+      <div class="beta-content reveal">
+        <div class="section-label" style="background:rgba(255,255,255,0.15);color:white">Limited Beta</div>
+        <h2 class="beta-title">Be among the first<br>to try MidTide</h2>
+        <p class="beta-desc">We're inviting a small group of women to shape the future of MidTide. As a beta tester, you'll get early access to every feature and a direct line to our team.</p>
+      </div>
+      <div class="beta-card reveal reveal-delay-1">
+        <div class="beta-card-header">
+          <h3>Join the Beta</h3>
+          <p>Limited spots available</p>
+        </div>
+        <form class="beta-form" id="betaForm">
+          <div class="beta-field">
+            <label for="beta-name">Name</label>
+            <input type="text" id="beta-name" placeholder="Your first name" required>
+          </div>
+          <div class="beta-field">
+            <label for="beta-email">Email</label>
+            <input type="email" id="beta-email" placeholder="your@email.com" required>
+          </div>
+          <div class="beta-field">
+            <label for="beta-age">Age range</label>
+            <select id="beta-age" required>
+              <option value="" disabled selected>Select your age range</option>
+              <option value="35-39">35-39</option>
+              <option value="40-44">40-44</option>
+              <option value="45-49">45-49</option>
+              <option value="50-55">50-55</option>
+              <option value="55+">55+</option>
+            </select>
+          </div>
+          <div class="beta-field">
+            <label for="beta-stage">Perimenopause stage</label>
+            <select id="beta-stage" required>
+              <option value="" disabled selected>Where are you in your journey?</option>
+              <option value="wondering">I think it might be starting</option>
+              <option value="early">Early perimenopause</option>
+              <option value="mid">In the middle of it</option>
+              <option value="late">Late perimenopause / near menopause</option>
+              <option value="post">Post-menopause</option>
+              <option value="unsure">Not sure yet</option>
+            </select>
+          </div>
+          <div class="beta-field">
+            <label>What interests you most? <span style="color:var(--light-gray);font-weight:400">(select all that apply)</span></label>
+            <div class="beta-interests">
+              <label class="beta-chip"><input type="checkbox" value="peermatch"><span>Peer matching</span></label>
+              <label class="beta-chip"><input type="checkbox" value="tracking"><span>Symptom tracking</span></label>
+              <label class="beta-chip"><input type="checkbox" value="content"><span>Expert content</span></label>
+              <label class="beta-chip"><input type="checkbox" value="community"><span>Community</span></label>
+              <label class="beta-chip"><input type="checkbox" value="doctor"><span>Doctor reports</span></label>
+            </div>
+          </div>
+          <button type="submit" class="beta-submit">Request Early Access</button>
+          <p class="beta-note">Free during beta. No credit card required. We'll never share your data.</p>
+        </form>
+        <div class="beta-success" id="betaSuccess" style="display:none">
+          <div class="beta-success-icon">&#10003;</div>
+          <h3>You're on the list!</h3>
+          <p>Thank you for signing up. We'll be in touch soon with your beta invite.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ FOOTER ════ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <svg width="140" height="36" viewBox="0 0 320 80" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="footer-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color:#26C6DA"/>
+              <stop offset="50%" style="stop-color:#FFB74D"/>
+              <stop offset="100%" style="stop-color:#FF8A65"/>
+            </linearGradient>
+          </defs>
+          <path d="M 10 40 Q 30 20, 50 40 T 90 40" stroke="url(#footer-grad)" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <circle cx="10" cy="40" r="5" fill="#FF8A65"/>
+          <circle cx="50" cy="40" r="5" fill="#FFB74D"/>
+          <circle cx="90" cy="40" r="5" fill="#26C6DA"/>
+          <text x="110" y="50" font-family="Fraunces, serif" font-size="34" font-weight="700" fill="rgba(255,255,255,0.7)" letter-spacing="-1.5">MidTide</text>
+        </svg>
+        <p>Connecting women navigating perimenopause through peer support, symptom tracking, and expert content.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Product</h5>
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#beta">Join the Beta</a>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <a href="#">Blog</a>
+        <a href="#">Press</a>
+        <a href="#">Careers</a>
+        <a href="#">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h5>Legal</h5>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Policy</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 MidTide. All rights reserved.</span>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram">&#9679;</a>
+        <a href="#" aria-label="Twitter">&#9679;</a>
+        <a href="#" aria-label="LinkedIn">&#9679;</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Scroll-based nav shadow
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+});
+
+// Reveal on scroll
+const revealEls = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+revealEls.forEach(el => revealObserver.observe(el));
+
+// Beta form submission
+const betaForm = document.getElementById('betaForm');
+if (betaForm) {
+  betaForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    this.style.display = 'none';
+    document.querySelector('.beta-card-header').style.display = 'none';
+    document.getElementById('betaSuccess').style.display = 'block';
+  });
+}
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+</body>
+</html>
