@@ -909,18 +909,25 @@ footer{
           <h3>Join the Beta</h3>
           <p>Limited spots available</p>
         </div>
-        <form class="beta-form" id="betaForm">
+        <form class="beta-form" id="betaForm" action="https://formsubmit.co/bea@mid-tide.app" method="POST">
+          <!-- Formsubmit config -->
+          <input type="hidden" name="_subject" value="New MidTide Beta Signup!">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+          <input type="text" name="_honey" style="display:none">
+          <input type="hidden" name="_next" value="https://mid-tide.app#beta-thankyou">
+          <input type="hidden" name="Interests" id="interests-hidden" value="">
           <div class="beta-field">
             <label for="beta-name">Name</label>
-            <input type="text" id="beta-name" placeholder="Your first name" required>
+            <input type="text" id="beta-name" name="Name" placeholder="Your first name" required>
           </div>
           <div class="beta-field">
             <label for="beta-email">Email</label>
-            <input type="email" id="beta-email" placeholder="your@email.com" required>
+            <input type="email" id="beta-email" name="Email" placeholder="your@email.com" required>
           </div>
           <div class="beta-field">
             <label for="beta-age">Age range</label>
-            <select id="beta-age" required>
+            <select id="beta-age" name="Age Range" required>
               <option value="" disabled selected>Select your age range</option>
               <option value="35-39">35-39</option>
               <option value="40-44">40-44</option>
@@ -931,7 +938,7 @@ footer{
           </div>
           <div class="beta-field">
             <label for="beta-stage">Perimenopause stage</label>
-            <select id="beta-stage" required>
+            <select id="beta-stage" name="Perimenopause Stage" required>
               <option value="" disabled selected>Where are you in your journey?</option>
               <option value="wondering">I think it might be starting</option>
               <option value="early">Early perimenopause</option>
@@ -944,11 +951,11 @@ footer{
           <div class="beta-field">
             <label>What interests you most? <span style="color:var(--light-gray);font-weight:400">(select all that apply)</span></label>
             <div class="beta-interests">
-              <label class="beta-chip"><input type="checkbox" value="peermatch"><span>Peer matching</span></label>
-              <label class="beta-chip"><input type="checkbox" value="tracking"><span>Symptom tracking</span></label>
-              <label class="beta-chip"><input type="checkbox" value="content"><span>Expert content</span></label>
-              <label class="beta-chip"><input type="checkbox" value="community"><span>Community</span></label>
-              <label class="beta-chip"><input type="checkbox" value="doctor"><span>Doctor reports</span></label>
+              <label class="beta-chip"><input type="checkbox" value="Peer matching"><span>Peer matching</span></label>
+              <label class="beta-chip"><input type="checkbox" value="Symptom tracking"><span>Symptom tracking</span></label>
+              <label class="beta-chip"><input type="checkbox" value="Expert content"><span>Expert content</span></label>
+              <label class="beta-chip"><input type="checkbox" value="Community"><span>Community</span></label>
+              <label class="beta-chip"><input type="checkbox" value="Doctor reports"><span>Doctor reports</span></label>
             </div>
           </div>
           <button type="submit" class="beta-submit">Request Early Access</button>
@@ -1037,15 +1044,27 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 revealEls.forEach(el => revealObserver.observe(el));
 
-// Beta form submission
+// Beta form: collect checkbox interests into hidden field before submit
 const betaForm = document.getElementById('betaForm');
 if (betaForm) {
-  betaForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    this.style.display = 'none';
-    document.querySelector('.beta-card-header').style.display = 'none';
-    document.getElementById('betaSuccess').style.display = 'block';
+  betaForm.addEventListener('submit', function() {
+    const checked = [...this.querySelectorAll('.beta-interests input:checked')].map(cb => cb.value);
+    document.getElementById('interests-hidden').value = checked.join(', ') || 'None selected';
   });
+}
+
+// Show success message if returning from Formsubmit redirect
+if (window.location.hash === '#beta-thankyou') {
+  const form = document.getElementById('betaForm');
+  const header = document.querySelector('.beta-card-header');
+  const success = document.getElementById('betaSuccess');
+  if (form) form.style.display = 'none';
+  if (header) header.style.display = 'none';
+  if (success) success.style.display = 'block';
+  setTimeout(() => {
+    const betaSection = document.getElementById('beta');
+    if (betaSection) betaSection.scrollIntoView({ behavior: 'smooth' });
+  }, 300);
 }
 
 // Smooth scroll for anchor links
