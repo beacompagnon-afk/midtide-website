@@ -909,14 +909,9 @@ footer{
           <h3>Join the Beta</h3>
           <p>Limited spots available</p>
         </div>
-        <form class="beta-form" id="betaForm" action="https://formsubmit.co/bea@mid-tide.app" method="POST">
-          <!-- Formsubmit config -->
-          <input type="hidden" name="_subject" value="New MidTide Beta Signup!">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_template" value="table">
-          <input type="text" name="_honey" style="display:none">
-          <input type="hidden" name="_next" value="https://mid-tide.app#beta-thankyou">
-          <input type="hidden" name="Interests" id="interests-hidden" value="">
+        <form class="beta-form" id="betaForm">
+          <!-- GOOGLE SHEETS ENDPOINT — replace URL below with your Apps Script web app URL -->
+          <input type="hidden" id="sheets-endpoint" value="https://script.google.com/macros/s/AKfycbzInfocw91eQfbdSS3nmfrUOQWNovKIF9s9cY3i18FX04Oy9v8aMWOvtVo7KM9wxv9E/exec">
           <div class="beta-field">
             <label for="beta-name">Name</label>
             <input type="text" id="beta-name" name="Name" placeholder="Your first name" required>
@@ -1044,27 +1039,42 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 revealEls.forEach(el => revealObserver.observe(el));
 
-// Beta form: collect checkbox interests into hidden field before submit
+// Beta form: submit to Google Sheets via Apps Script
 const betaForm = document.getElementById('betaForm');
 if (betaForm) {
-  betaForm.addEventListener('submit', function() {
-    const checked = [...this.querySelectorAll('.beta-interests input:checked')].map(cb => cb.value);
-    document.getElementById('interests-hidden').value = checked.join(', ') || 'None selected';
-  });
-}
+  betaForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const btn = this.querySelector('.beta-submit');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
 
-// Show success message if returning from Formsubmit redirect
-if (window.location.hash === '#beta-thankyou') {
-  const form = document.getElementById('betaForm');
-  const header = document.querySelector('.beta-card-header');
-  const success = document.getElementById('betaSuccess');
-  if (form) form.style.display = 'none';
-  if (header) header.style.display = 'none';
-  if (success) success.style.display = 'block';
-  setTimeout(() => {
-    const betaSection = document.getElementById('beta');
-    if (betaSection) betaSection.scrollIntoView({ behavior: 'smooth' });
-  }, 300);
+    const interests = [...this.querySelectorAll('.beta-interests input:checked')].map(cb => cb.value);
+    const payload = {
+      Name: document.getElementById('beta-name').value,
+      Email: document.getElementById('beta-email').value,
+      'Age Range': document.getElementById('beta-age').value,
+      'Perimenopause Stage': document.getElementById('beta-stage').value,
+      Interests: interests.join(', ') || 'None selected'
+    };
+
+    const endpoint = document.getElementById('sheets-endpoint').value;
+    fetch(endpoint, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    .then(() => {
+      this.style.display = 'none';
+      document.querySelector('.beta-card-header').style.display = 'none';
+      document.getElementById('betaSuccess').style.display = 'block';
+    })
+    .catch(() => {
+      btn.textContent = 'Request Early Access';
+      btn.disabled = false;
+      alert('Something went wrong. Please try again or email bea@mid-tide.app directly.');
+    });
+  });
 }
 
 // Smooth scroll for anchor links
