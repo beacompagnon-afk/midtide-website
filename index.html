@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MidTide -- Navigating Perimenopause Together</title>
+<title>MidTide | Navigating Perimenopause Together</title>
 <meta name="description" content="MidTide connects women navigating perimenopause through peer support, symptom tracking, and expert content. Start your free trial.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
@@ -624,13 +624,13 @@ footer{
     <div class="hero-content">
       <div class="hero-eyebrow reveal">
         <span class="dot"></span>
-        Coming soon -- iOS & Android
+        Coming soon on iOS & Android
       </div>
       <h1 class="hero-title reveal reveal-delay-1">
         Navigating<br>perimenopause<br><em>together.</em>
       </h1>
       <p class="hero-desc reveal reveal-delay-2">
-        MidTide connects you with women who truly understand -- because they're going through it too. Track symptoms, find your people, and take control of this chapter.
+        MidTide connects you with women who truly understand, because they're going through it too. Track symptoms, find your people, and take control of this chapter.
       </p>
       <div class="hero-actions reveal reveal-delay-3">
         <a href="#beta" class="btn-hero">
@@ -780,7 +780,7 @@ footer{
     <div class="features-header">
       <div class="section-label reveal">Three Pillars</div>
       <h2 class="section-title reveal reveal-delay-1">Everything you need.<br>One app.</h2>
-      <p class="section-subtitle mx-auto reveal reveal-delay-2">MidTide combines the three things women navigating perimenopause need most -- connection, clarity, and knowledge.</p>
+      <p class="section-subtitle mx-auto reveal reveal-delay-2">MidTide combines the three things women navigating perimenopause need most: connection, clarity, and knowledge.</p>
     </div>
     <div class="pillar-grid">
       <div class="pillar reveal">
@@ -797,7 +797,7 @@ footer{
       <div class="pillar reveal reveal-delay-1">
         <div class="pillar-icon">&#128202;</div>
         <h3>Symptom Tracker</h3>
-        <p>Daily check-ins build a visual picture of your journey. Track mood, sleep, energy, symptoms, and period -- all in under 60 seconds.</p>
+        <p>Daily check-ins build a visual picture of your journey. Track mood, sleep, energy, symptoms, and period, all in under 60 seconds.</p>
         <ul class="pillar-features">
           <li>60-second daily check-in</li>
           <li>Visual heat map & trend lines</li>
@@ -808,7 +808,7 @@ footer{
       <div class="pillar reveal reveal-delay-2">
         <div class="pillar-icon">&#128218;</div>
         <h3>Content Hub</h3>
-        <p>Expert-curated articles on HRT, mental health, nutrition, sleep, and relationships -- written specifically for perimenopause.</p>
+        <p>Expert-curated articles on HRT, mental health, nutrition, sleep, and relationships. Written specifically for perimenopause.</p>
         <ul class="pillar-features">
           <li>75+ expert-curated articles</li>
           <li>Personalized to your symptoms</li>
@@ -879,7 +879,7 @@ footer{
       <div class="price-card featured reveal reveal-delay-1">
         <div class="price-name">Annual</div>
         <div class="price-amount">$59.99<span>/yr</span></div>
-        <div class="price-period">~$5.00/month -- save 37%</div>
+        <div class="price-period">~$5.00/month (save 37%)</div>
         <ul class="price-features">
           <li><span class="price-check yes">&#10003;</span> Everything in Monthly</li>
           <li><span class="price-check yes">&#10003;</span> Priority PeerMatch</li>
@@ -1049,31 +1049,28 @@ if (betaForm) {
     btn.disabled = true;
 
     const interests = [...this.querySelectorAll('.beta-interests input:checked')].map(cb => cb.value);
-    const payload = {
+    const endpoint = document.getElementById('sheets-endpoint').value;
+
+    const params = new URLSearchParams({
       Name: document.getElementById('beta-name').value,
       Email: document.getElementById('beta-email').value,
-      'Age Range': document.getElementById('beta-age').value,
-      'Perimenopause Stage': document.getElementById('beta-stage').value,
+      AgeRange: document.getElementById('beta-age').value,
+      Stage: document.getElementById('beta-stage').value,
       Interests: interests.join(', ') || 'None selected'
-    };
+    });
 
-    const endpoint = document.getElementById('sheets-endpoint').value;
-    fetch(endpoint, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    })
-    .then(() => {
-      this.style.display = 'none';
+    // Use a dynamically injected script tag — follows Google's redirects reliably
+    const script = document.createElement('script');
+    script.src = endpoint + '?' + params.toString() + '&callback=betaCallback';
+    document.body.appendChild(script);
+
+    // Also set a timer as backup — script tag won't error if response isn't JS
+    setTimeout(function() {
+      document.getElementById('betaForm').style.display = 'none';
       document.querySelector('.beta-card-header').style.display = 'none';
       document.getElementById('betaSuccess').style.display = 'block';
-    })
-    .catch(() => {
-      btn.textContent = 'Request Early Access';
-      btn.disabled = false;
-      alert('Something went wrong. Please try again or email bea@mid-tide.app directly.');
-    });
+      script.remove();
+    }, 2500);
   });
 }
 
