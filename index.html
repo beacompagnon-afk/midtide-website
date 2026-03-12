@@ -944,6 +944,15 @@ footer{
             </select>
           </div>
           <div class="beta-field">
+            <label for="beta-device">What phone do you use?</label>
+            <select id="beta-device" name="Device" required>
+              <option value="" disabled selected>Select your device</option>
+              <option value="iPhone">iPhone</option>
+              <option value="Android">Android</option>
+              <option value="Both">I use both</option>
+            </select>
+          </div>
+          <div class="beta-field">
             <label>What interests you most? <span style="color:var(--light-gray);font-weight:400">(select all that apply)</span></label>
             <div class="beta-interests">
               <label class="beta-chip"><input type="checkbox" value="Peer matching"><span>Peer matching</span></label>
@@ -1056,6 +1065,7 @@ if (betaForm) {
       Email: document.getElementById('beta-email').value,
       AgeRange: document.getElementById('beta-age').value,
       Stage: document.getElementById('beta-stage').value,
+      Device: document.getElementById('beta-device').value,
       Interests: interests.join(', ') || 'None selected'
     });
 
