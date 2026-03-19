@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MidTide | Navigating Perimenopause Together</title>
-<meta name="description" content="MidTide connects women navigating perimenopause through peer support, symptom tracking, and expert content. Start your free trial.">
+<meta name="description" content="MidTide connects women navigating perimenopause through peer support, symptom tracking, and expert content. Join the beta — it's free.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
 <style>
@@ -609,7 +609,7 @@ footer{
     <div class="nav-links">
       <a href="#features">Features</a>
       <a href="#how-it-works">How It Works</a>
-      <a href="#pricing">Pricing</a>
+      <!-- <a href="#pricing">Pricing</a> hidden during beta -->
       <a href="#beta" class="nav-cta">Join the Beta</a>
     </div>
     <button class="mobile-menu-btn" aria-label="Menu" onclick="this.classList.toggle('active')">
@@ -853,8 +853,8 @@ footer{
   </div>
 </section>
 
-<!-- ════ PRICING ════ -->
-<section class="pricing section" id="pricing">
+<!-- ════ PRICING (hidden during beta — uncomment when ready to launch paid plans) ════ -->
+<section class="pricing section" id="pricing" style="display:none">
   <div class="container">
     <div class="text-center">
       <div class="section-label reveal">Simple Pricing</div>
@@ -963,7 +963,7 @@ footer{
             </div>
           </div>
           <button type="submit" class="beta-submit">Request Early Access</button>
-          <p class="beta-note">Free during beta. No credit card required. We'll never share your data.</p>
+          <p class="beta-note">Completely free during beta. We'll never share your data.</p>
         </form>
         <div class="beta-success" id="betaSuccess" style="display:none">
           <div class="beta-success-icon">&#10003;</div>
@@ -999,7 +999,7 @@ footer{
       <div class="footer-col">
         <h5>Product</h5>
         <a href="#features">Features</a>
-        <a href="#pricing">Pricing</a>
+        <!-- <a href="#pricing">Pricing</a> hidden during beta -->
         <a href="#how-it-works">How It Works</a>
         <a href="#beta">Join the Beta</a>
       </div>
@@ -1036,8 +1036,27 @@ window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 20);
 });
 
-// Reveal on scroll
+// Reveal on scroll — but hero elements animate in immediately on page load
 const revealEls = document.querySelectorAll('.reveal');
+const heroSection = document.querySelector('.hero');
+
+// Hero elements get revealed on load with their stagger delays intact
+const statsBar = document.querySelector('.stats-bar');
+if (heroSection) {
+  const heroReveals = heroSection.querySelectorAll('.reveal');
+  setTimeout(() => {
+    heroReveals.forEach(el => el.classList.add('visible'));
+  }, 100);
+}
+// Stats bar is right below the hero — reveal it shortly after the hero lands
+if (statsBar) {
+  const statsReveals = statsBar.querySelectorAll('.reveal');
+  setTimeout(() => {
+    statsReveals.forEach(el => el.classList.add('visible'));
+  }, 800);
+}
+
+// Everything else uses scroll-triggered reveal
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -1045,8 +1064,13 @@ const revealObserver = new IntersectionObserver((entries) => {
       revealObserver.unobserve(entry.target);
     }
   });
-}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-revealEls.forEach(el => revealObserver.observe(el));
+}, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
+revealEls.forEach(el => {
+  // Skip hero and stats elements — they're already handled above
+  if (heroSection && heroSection.contains(el)) return;
+  if (statsBar && statsBar.contains(el)) return;
+  revealObserver.observe(el);
+});
 
 // Beta form: submit to Google Sheets via Apps Script
 const betaForm = document.getElementById('betaForm');
