@@ -265,8 +265,15 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.06)}
 .problem-card h4{font-size:16px;font-weight:600;margin-bottom:4px}
 .problem-card p{font-size:14px;color:var(--gray);line-height:1.5}
 
+/* ── WAVE DIVIDERS ─────────────────────────────────────────── */
+.wave-divider{
+  width:100%;overflow:hidden;line-height:0;position:relative;z-index:2;
+}
+.wave-divider svg{display:block;width:100%;height:auto}
+.wave-divider.flip{transform:scaleY(-1)}
+
 /* ── FEATURES / THREE PILLARS ───────────────────────────────── */
-.features{background:var(--bg)}
+.features{background:var(--surface-warm);position:relative}
 .features-header{text-align:center;margin-bottom:72px}
 .pillar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
 .pillar{
@@ -309,8 +316,12 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.06)}
 
 /* ── HOW IT WORKS ───────────────────────────────────────────── */
 .how-it-works{
-  background:linear-gradient(180deg,var(--bg),var(--warm));
+  background:linear-gradient(180deg,var(--bg) 0%,var(--warm) 40%,var(--warm) 70%,var(--bg) 100%);
   position:relative;
+}
+.how-it-works::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,138,101,0.15),transparent);
 }
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-top:60px}
 .step{text-align:center;position:relative}
@@ -318,6 +329,12 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.06)}
   content:'';position:absolute;top:36px;left:calc(50% + 40px);
   width:calc(100% - 80px);height:2px;
   background:linear-gradient(90deg,var(--coral-light),var(--peach-light));
+  opacity:0.7;
+}
+.step::before{
+  content:'';position:absolute;top:33px;left:calc(50% + 40px);
+  width:8px;height:8px;border-radius:50%;
+  background:var(--coral-light);opacity:0.5;z-index:2;
 }
 .step:last-child::after{display:none}
 .step-num{
@@ -774,8 +791,15 @@ footer{
   </div>
 </section>
 
+<!-- Wave: Problem → Features -->
+<div class="wave-divider" style="margin-top:-1px">
+  <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,20 C240,50 480,0 720,25 C960,50 1200,10 1440,30 L1440,60 L0,60 Z" fill="var(--surface-warm)"/>
+  </svg>
+</div>
+
 <!-- ════ FEATURES / THREE PILLARS ════ -->
-<section class="features section" id="features">
+<section class="features section" id="features" style="padding-top:80px">
   <div class="container">
     <div class="features-header">
       <div class="section-label reveal">Three Pillars</div>
@@ -820,8 +844,15 @@ footer{
   </div>
 </section>
 
+<!-- Wave: Features → How It Works -->
+<div class="wave-divider" style="margin-top:-1px;background:var(--surface-warm)">
+  <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,30 C360,0 720,50 1080,20 C1260,10 1380,25 1440,20 L1440,60 L0,60 Z" fill="var(--bg)"/>
+  </svg>
+</div>
+
 <!-- ════ HOW IT WORKS ════ -->
-<section class="how-it-works section" id="how-it-works">
+<section class="how-it-works section" id="how-it-works" style="padding-top:80px">
   <div class="container">
     <div class="text-center">
       <div class="section-label reveal">How It Works</div>
@@ -895,8 +926,15 @@ footer{
   </div>
 </section>
 
+<!-- Wave: How It Works → Beta -->
+<div class="wave-divider" style="margin-top:-1px">
+  <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,25 C180,50 420,5 720,30 C1020,55 1260,15 1440,25 L1440,60 L0,60 Z" fill="var(--dark)"/>
+  </svg>
+</div>
+
 <!-- ════ BETA SIGNUP ════ -->
-<section class="beta-section" id="beta">
+<section class="beta-section" id="beta" style="padding-top:80px">
   <div class="container">
     <div class="beta-inner">
       <div class="beta-content reveal">
