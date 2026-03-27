@@ -87,6 +87,34 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.06)}
 .mobile-menu-btn{display:none;background:none;border:none;cursor:pointer;padding:8px}
 .mobile-menu-btn span{display:block;width:24px;height:2px;background:var(--dark);margin:5px 0;transition:0.3s}
 
+/* Mobile menu panel */
+.mobile-nav{
+  display:none;position:fixed;top:72px;left:0;right:0;z-index:999;
+  background:rgba(255,255,255,0.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(0,0,0,0.06);
+  padding:16px 24px 24px;
+  box-shadow:0 8px 30px rgba(0,0,0,0.08);
+  transform:translateY(-10px);opacity:0;
+  transition:transform 0.25s ease,opacity 0.25s ease;
+}
+.mobile-nav.open{display:flex;flex-direction:column;gap:4px;transform:translateY(0);opacity:1}
+.mobile-nav a{
+  display:block;padding:14px 16px;border-radius:12px;
+  font-size:16px;font-weight:500;color:var(--dark);
+  transition:background 0.2s;
+}
+.mobile-nav a:hover{background:var(--surface-warm)}
+.mobile-nav .nav-cta{
+  margin-top:8px;text-align:center;justify-content:center;
+  padding:14px 24px;border-radius:100px;
+  background:var(--grad-coral);color:white;font-weight:600;
+  box-shadow:var(--shadow-btn);
+}
+/* Hamburger animation */
+.mobile-menu-btn.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.mobile-menu-btn.active span:nth-child(2){opacity:0}
+.mobile-menu-btn.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+
 /* ── HERO ───────────────────────────────────────────────────── */
 .hero{
   position:relative;padding:160px 0 120px;
@@ -159,37 +187,29 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.06)}
 }
 .phone-screen{
   width:100%;height:100%;border-radius:34px;overflow:hidden;
-  background:linear-gradient(180deg,var(--warm),var(--bg));
+  background:var(--bg);
   position:relative;
 }
-.phone-notch{
-  position:absolute;top:0;left:50%;transform:translateX(-50%);
-  width:110px;height:30px;background:#1a1a1a;
-  border-radius:0 0 18px 18px;z-index:10;
+.phone-screen img{
+  width:100%;height:100%;object-fit:cover;object-position:top center;
+  display:block;
 }
-.phone-content{
-  padding:52px 20px 20px;height:100%;overflow:hidden;
+
+/* Feature screenshot phones */
+.feature-phone{
+  width:180px;height:370px;
+  background:#1a1a1a;border-radius:30px;padding:8px;
+  box-shadow:0 16px 48px rgba(0,0,0,0.12);
+  margin:24px auto 0;flex-shrink:0;
 }
-.phone-greeting{font-family:var(--font-display);font-size:20px;font-weight:600;margin-bottom:4px}
-.phone-date{font-size:13px;color:var(--gray);margin-bottom:16px}
-.phone-card{
-  background:white;border-radius:14px;padding:16px;margin-bottom:12px;
-  box-shadow:0 2px 8px rgba(0,0,0,0.05);
+.feature-phone-screen{
+  width:100%;height:100%;border-radius:23px;overflow:hidden;
+  background:var(--bg);
 }
-.phone-card-title{font-size:14px;font-weight:600;margin-bottom:6px}
-.phone-card-sub{font-size:12px;color:var(--gray)}
-.phone-btn{
-  display:block;width:100%;padding:10px;border-radius:20px;text-align:center;
-  background:var(--grad-coral);color:white;font-size:13px;font-weight:600;
-  margin-top:10px;
+.feature-phone-screen img{
+  width:100%;height:100%;object-fit:cover;object-position:top center;
+  display:block;
 }
-.phone-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
-.phone-stat{
-  background:white;border-radius:12px;padding:12px 8px;text-align:center;
-  box-shadow:0 2px 8px rgba(0,0,0,0.05);
-}
-.phone-stat-val{font-size:18px;font-weight:700}
-.phone-stat-label{font-size:10px;color:var(--gray);margin-top:2px}
 
 /* Floating badges around phone */
 .float-badge{
@@ -281,6 +301,7 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.06)}
   border:1px solid rgba(0,0,0,0.04);
   position:relative;overflow:hidden;
   transition:transform 0.3s,box-shadow 0.3s;
+  display:flex;flex-direction:column;
 }
 .pillar:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
 .pillar::before{
@@ -310,9 +331,9 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.06)}
   content:'';width:20px;height:20px;border-radius:50%;flex-shrink:0;
   display:flex;align-items:center;justify-content:center;
 }
-.pillar:nth-child(1) .pillar-features li::before{background:rgba(38,198,218,0.15)}
-.pillar:nth-child(2) .pillar-features li::before{background:rgba(255,138,101,0.15)}
-.pillar:nth-child(3) .pillar-features li::before{background:rgba(255,183,77,0.15)}
+.pillar:nth-child(1) .pillar-features li::before{background:rgba(38,198,218,0.15);content:'✓';font-size:11px;font-weight:700;color:var(--teal)}
+.pillar:nth-child(2) .pillar-features li::before{background:rgba(255,138,101,0.15);content:'✓';font-size:11px;font-weight:700;color:var(--coral)}
+.pillar:nth-child(3) .pillar-features li::before{background:rgba(255,183,77,0.15);content:'✓';font-size:11px;font-weight:700;color:var(--peach)}
 
 /* ── HOW IT WORKS ───────────────────────────────────────────── */
 .how-it-works{
@@ -594,6 +615,8 @@ footer{
   .steps{grid-template-columns:1fr}
   .phone-mockup{width:240px;height:500px;transform:none}
   .float-badge{display:none}
+  .feature-phone{width:140px;height:290px;border-radius:24px;padding:6px}
+  .feature-phone-screen{border-radius:19px}
 }
 @media(max-width:480px){
   .hero{padding:120px 0 80px}
@@ -629,11 +652,16 @@ footer{
       <!-- <a href="#pricing">Pricing</a> hidden during beta -->
       <a href="#beta" class="nav-cta">Join the Beta</a>
     </div>
-    <button class="mobile-menu-btn" aria-label="Menu" onclick="this.classList.toggle('active')">
+    <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
   </div>
 </nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="#features" onclick="closeMobile()">Features</a>
+  <a href="#how-it-works" onclick="closeMobile()">How It Works</a>
+  <a href="#beta" class="nav-cta" onclick="closeMobile()">Join the Beta</a>
+</div>
 
 <!-- ════ HERO ════ -->
 <section class="hero">
@@ -641,13 +669,13 @@ footer{
     <div class="hero-content">
       <div class="hero-eyebrow reveal">
         <span class="dot"></span>
-        Coming soon on iOS & Android
+        Now in beta on iOS & Android
       </div>
       <h1 class="hero-title reveal reveal-delay-1">
         Navigating<br>perimenopause<br><em>together.</em>
       </h1>
       <p class="hero-desc reveal reveal-delay-2">
-        MidTide connects you with women who truly understand, because they're going through it too. Track symptoms, find your people, and take control of this chapter.
+        MidTide connects you with women who truly get it. Track symptoms and habits, spot your patterns, and find people going through the same thing.
       </p>
       <div class="hero-actions reveal reveal-delay-3">
         <a href="#beta" class="btn-hero">
@@ -660,37 +688,14 @@ footer{
     <div class="hero-visual reveal reveal-delay-2">
       <div class="phone-mockup">
         <div class="phone-screen">
-          <div class="phone-notch"></div>
-          <div class="phone-content">
-            <div class="phone-greeting">Good morning, Sarah</div>
-            <div class="phone-date">Friday, February 28</div>
-            <div class="phone-card">
-              <div class="phone-card-title">How are you today?</div>
-              <div class="phone-card-sub">You haven't checked in yet</div>
-              <div class="phone-btn">Start Daily Check-In</div>
-            </div>
-            <div class="phone-stats">
-              <div class="phone-stat">
-                <div class="phone-stat-val">4</div>
-                <div class="phone-stat-label">Mood</div>
-              </div>
-              <div class="phone-stat">
-                <div class="phone-stat-val">6.5h</div>
-                <div class="phone-stat-label">Sleep</div>
-              </div>
-              <div class="phone-stat">
-                <div class="phone-stat-val">3</div>
-                <div class="phone-stat-label">Energy</div>
-              </div>
-            </div>
-          </div>
+          <img src="screenshots/dashboard.jpg" alt="MidTide dashboard showing mood timeline, symptom patterns, and activity insights" loading="eager">
         </div>
       </div>
       <div class="float-badge float-badge-1">
         <div class="badge-icon">92%</div>
         <div>
-          <div style="font-weight:700;font-size:14px">PeerMatch</div>
-          <div style="font-size:11px;color:var(--gray)">Sarah, London</div>
+          <div style="font-weight:700;font-size:14px">New Match</div>
+          <div style="font-size:11px;color:var(--gray)">5 symptoms in common</div>
         </div>
       </div>
       <div class="float-badge float-badge-2">
@@ -703,8 +708,8 @@ footer{
       <div class="float-badge float-badge-3">
         <div class="badge-icon">&#9829;</div>
         <div>
-          <div style="font-weight:700;font-size:14px">New Article</div>
-          <div style="font-size:11px;color:var(--gray)">Sleep & HRT</div>
+          <div style="font-weight:700;font-size:14px">Pattern Found</div>
+          <div style="font-size:11px;color:var(--gray)">Caffeine → worse sleep</div>
         </div>
       </div>
     </div>
@@ -715,23 +720,23 @@ footer{
 <div class="stats-bar">
   <div class="stats-inner">
     <div class="stat-item reveal">
-      <div class="stat-number">1B<span class="accent">+</span></div>
-      <div class="stat-text">women in menopause worldwide by 2025</div>
+      <div class="stat-number">34+</div>
+      <div class="stat-text">symptoms linked to perimenopause</div>
     </div>
     <div class="stat-divider"></div>
     <div class="stat-item reveal reveal-delay-1">
-      <div class="stat-number">1 in 3</div>
-      <div class="stat-text">go undiagnosed for over a year</div>
+      <div class="stat-number">79%</div>
+      <div class="stat-text">of women had no support network to lean on</div>
     </div>
     <div class="stat-divider"></div>
     <div class="stat-item reveal reveal-delay-2">
-      <div class="stat-number">$150B</div>
-      <div class="stat-text">annual global economic impact</div>
+      <div class="stat-number">1 in 3</div>
+      <div class="stat-text">misdiagnosed before finding answers</div>
     </div>
     <div class="stat-divider"></div>
     <div class="stat-item reveal reveal-delay-3">
-      <div class="stat-number">8<span class="accent">%</span></div>
-      <div class="stat-text">of women receive HRT treatment</div>
+      <div class="stat-number">60 sec</div>
+      <div class="stat-text">daily check-in to start spotting your patterns</div>
     </div>
   </div>
 </div>
@@ -741,23 +746,23 @@ footer{
   <div class="container">
     <div class="problem-grid">
       <div class="problem-visual reveal">
-        <div class="section-label">The Problem</div>
+        <div class="section-label">Sound Familiar?</div>
         <blockquote class="problem-quote">
-          Women don't need to be fixed. They need to be <em>heard, connected,</em> and equipped with the right tools.
+          I thought I was losing my mind. Turns out I was just going through something <em>nobody told me about.</em>
         </blockquote>
         <div class="problem-cards" style="margin-top:40px">
           <div class="problem-card reveal reveal-delay-1">
-            <div class="problem-card-icon" style="background:rgba(255,138,101,0.12)">&#128566;</div>
+            <div class="problem-card-icon" style="background:rgba(38,198,218,0.12)">&#129309;</div>
             <div>
-              <h4>Misdiagnosed & Dismissed</h4>
-              <p>40% of women report symptoms interfere with work weekly. Most are told "it's just stress."</p>
+              <h4>Someone who actually gets it</h4>
+              <p>MidTide matches you with women going through the same symptoms and stage. Not a forum — a real person you can message when it's 3am and you can't sleep.</p>
             </div>
           </div>
           <div class="problem-card reveal reveal-delay-2">
-            <div class="problem-card-icon" style="background:rgba(38,198,218,0.12)">&#128557;</div>
+            <div class="problem-card-icon" style="background:rgba(255,138,101,0.12)">&#128200;</div>
             <div>
-              <h4>Isolated & Unsupported</h4>
-              <p>No single platform combines peer matching with symptom tracking and expert content.</p>
+              <h4>Your patterns, visible</h4>
+              <p>A 60-second daily check-in tracks mood, sleep, symptoms, and habits. Within days, the dashboard starts showing you what's connected — caffeine and sleep, stress and hot flashes, all of it.</p>
             </div>
           </div>
         </div>
@@ -765,24 +770,24 @@ footer{
       <div>
         <div class="problem-cards">
           <div class="problem-card reveal reveal-delay-1">
-            <div class="problem-card-icon" style="background:rgba(255,183,77,0.12)">&#128200;</div>
+            <div class="problem-card-icon" style="background:rgba(255,183,77,0.12)">&#128214;</div>
             <div>
-              <h4>Fragmented Market</h4>
-              <p>Period trackers don't cover perimenopause. Wellness apps ignore social isolation. Nothing connects all three.</p>
+              <h4>Answers you can trust</h4>
+              <p>Articles sourced from medical research, not wellness blogs. HRT, sleep, brain fog, nutrition — written specifically for what you're going through.</p>
             </div>
           </div>
           <div class="problem-card reveal reveal-delay-2">
-            <div class="problem-card-icon" style="background:rgba(255,138,101,0.12)">&#128176;</div>
+            <div class="problem-card-icon" style="background:rgba(255,138,101,0.12)">&#128203;</div>
             <div>
-              <h4>$250M+ Opportunity</h4>
-              <p>Global menopause app market growing at 15% CAGR. 75 million women enter perimenopause every year.</p>
+              <h4>Walk into your doctor's office prepared</h4>
+              <p>Track your medications and supplements, then export them as a PDF for your doctor. No more scribbling a list in the waiting room.</p>
             </div>
           </div>
           <div class="problem-card reveal reveal-delay-3">
-            <div class="problem-card-icon" style="background:rgba(38,198,218,0.12)">&#127793;</div>
+            <div class="problem-card-icon" style="background:rgba(38,198,218,0.12)">&#128172;</div>
             <div>
-              <h4>MidTide Fills the Gap</h4>
-              <p>Purpose-built for ages 35-55. Peer support + tracking + expert content, all in one affordable app.</p>
+              <h4>A community that doesn't feel like a crowd</h4>
+              <p>Six topic rooms — sleep, hot flashes, HRT, mood, staying active, nutrition. Small enough to feel safe, focused enough to actually help.</p>
             </div>
           </div>
         </div>
@@ -802,9 +807,9 @@ footer{
 <section class="features section" id="features" style="padding-top:80px">
   <div class="container">
     <div class="features-header">
-      <div class="section-label reveal">Three Pillars</div>
-      <h2 class="section-title reveal reveal-delay-1">Everything you need.<br>One app.</h2>
-      <p class="section-subtitle mx-auto reveal reveal-delay-2">MidTide combines the three things women navigating perimenopause need most: connection, clarity, and knowledge.</p>
+      <div class="section-label reveal">What MidTide Does</div>
+      <h2 class="section-title reveal reveal-delay-1">Track it. Understand it.<br>Talk about it.</h2>
+      <p class="section-subtitle mx-auto reveal reveal-delay-2">Peer support, symptom tracking, pattern detection, and expert content — all built around perimenopause.</p>
     </div>
     <div class="pillar-grid">
       <div class="pillar reveal">
@@ -812,33 +817,49 @@ footer{
         <h3>PeerMatch</h3>
         <p>Our matching algorithm connects you 1-on-1 with women who share your symptoms, stage, and location. Real connections, not forums.</p>
         <ul class="pillar-features">
-          <li>Symptom-based matching algorithm</li>
-          <li>Stage + location overlap scoring</li>
+          <li>Matched by symptoms, stage, and location</li>
           <li>Private 1-on-1 messaging</li>
-          <li>Accept or skip at your pace</li>
+          <li>No public profiles — you choose who sees you</li>
+          <li>6 community topic rooms</li>
         </ul>
+        <div class="feature-phone">
+          <div class="feature-phone-screen">
+            <img src="screenshots/messages.jpg" alt="MidTide messages screen with community rooms for Sleep Support, Hot Flashes, HRT Talk" loading="lazy">
+          </div>
+        </div>
       </div>
       <div class="pillar reveal reveal-delay-1">
         <div class="pillar-icon">&#128202;</div>
-        <h3>Symptom Tracker</h3>
-        <p>Daily check-ins build a visual picture of your journey. Track mood, sleep, energy, symptoms, and period, all in under 60 seconds.</p>
+        <h3>Track & Understand</h3>
+        <p>60-second daily check-ins that track mood, sleep, energy, symptoms, caffeine, alcohol, and period. The dashboard spots patterns you'd miss on your own.</p>
         <ul class="pillar-features">
-          <li>60-second daily check-in</li>
-          <li>Visual heat map & trend lines</li>
-          <li>26 perimenopause symptoms tracked</li>
-          <li>Exportable Doctor Report (PDF)</li>
+          <li>Interactive mood & cycle timeline</li>
+          <li>Caffeine and alcohol habit tracking</li>
+          <li>Pattern detection (sleep, triggers, trends)</li>
+          <li>Medication & supplement tracking</li>
+          <li>Export medications as PDF for your doctor</li>
         </ul>
+        <div class="feature-phone">
+          <div class="feature-phone-screen">
+            <img src="screenshots/checkin.jpg" alt="MidTide daily check-in with mood, symptoms, habits, and period tracking" loading="lazy">
+          </div>
+        </div>
       </div>
       <div class="pillar reveal reveal-delay-2">
         <div class="pillar-icon">&#128218;</div>
-        <h3>Content Hub</h3>
-        <p>Expert-curated articles on HRT, mental health, nutrition, sleep, and relationships. Written specifically for perimenopause.</p>
+        <h3>Articles That Help</h3>
+        <p>Evidence-based articles on HRT, sleep, mood, nutrition, and exercise — sourced from medical research, not wellness blogs.</p>
         <ul class="pillar-features">
-          <li>75+ expert-curated articles</li>
-          <li>Personalized to your symptoms</li>
-          <li>HRT, sleep, nutrition & more</li>
-          <li>Save & share with connections</li>
+          <li>Articles sourced from SWAN, BMS, NICE</li>
+          <li>Written for perimenopause specifically</li>
+          <li>HRT, sleep, nutrition, exercise & more</li>
+          <li>New articles added regularly</li>
         </ul>
+        <div class="feature-phone">
+          <div class="feature-phone-screen">
+            <img src="screenshots/home.jpg" alt="MidTide home screen with daily check-in, streak tracking, and quick actions" loading="lazy">
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -868,7 +889,7 @@ footer{
       <div class="step reveal reveal-delay-1">
         <div class="step-num">2</div>
         <h4>Check In Daily</h4>
-        <p>Log mood, sleep, energy, and symptoms in 60 seconds. Watch patterns emerge over time.</p>
+        <p>Log mood, sleep, energy, symptoms, and habits in 60 seconds. The app starts spotting your patterns within days.</p>
       </div>
       <div class="step reveal reveal-delay-2">
         <div class="step-num">3</div>
@@ -877,8 +898,8 @@ footer{
       </div>
       <div class="step reveal reveal-delay-3">
         <div class="step-num">4</div>
-        <h4>Learn & Grow</h4>
-        <p>Access expert articles tailored to your symptoms. Share insights with your connections.</p>
+        <h4>Learn & Connect</h4>
+        <p>Read evidence-based articles, join community rooms on topics like sleep and HRT, and share what you learn with your connections.</p>
       </div>
     </div>
   </div>
@@ -1032,7 +1053,7 @@ footer{
           <circle cx="90" cy="40" r="5" fill="#26C6DA"/>
           <text x="110" y="50" font-family="Fraunces, serif" font-size="34" font-weight="700" fill="rgba(255,255,255,0.7)" letter-spacing="-1.5">MidTide</text>
         </svg>
-        <p>Connecting women navigating perimenopause through peer support, symptom tracking, and expert content.</p>
+        <p>Peer support, symptom tracking, pattern detection, and evidence-based content for women navigating perimenopause.</p>
       </div>
       <div class="footer-col">
         <h5>Product</h5>
@@ -1043,25 +1064,21 @@ footer{
       </div>
       <div class="footer-col">
         <h5>Company</h5>
-        <a href="#">Blog</a>
-        <a href="#">Press</a>
-        <a href="#">Careers</a>
         <a href="mailto:bea@mid-tide.app">Contact</a>
+        <a href="#beta">Join the Beta</a>
       </div>
       <div class="footer-col">
         <h5>Legal</h5>
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
-        <a href="#">Cookie Policy</a>
-        <a href="mailto:bea@mid-tide.app">Contact</a>
+        <a href="mailto:bea@mid-tide.app?subject=Privacy%20Policy%20Request">Privacy Policy</a>
+        <a href="mailto:bea@mid-tide.app?subject=Terms%20of%20Service%20Request">Terms of Service</a>
       </div>
     </div>
     <div class="footer-bottom">
       <span>&copy; 2026 MidTide. All rights reserved.</span>
       <div class="footer-social">
-        <a href="#" aria-label="Instagram">&#9679;</a>
-        <a href="#" aria-label="Twitter">&#9679;</a>
-        <a href="#" aria-label="LinkedIn">&#9679;</a>
+        <a href="mailto:bea@mid-tide.app" aria-label="Email">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg>
+        </a>
       </div>
     </div>
   </div>
@@ -1144,6 +1161,20 @@ if (betaForm) {
       script.remove();
     }, 2500);
   });
+}
+
+// Mobile menu toggle
+const menuBtn = document.getElementById('menuBtn');
+const mobileNav = document.getElementById('mobileNav');
+if (menuBtn && mobileNav) {
+  menuBtn.addEventListener('click', () => {
+    menuBtn.classList.toggle('active');
+    mobileNav.classList.toggle('open');
+  });
+}
+function closeMobile() {
+  if (menuBtn) menuBtn.classList.remove('active');
+  if (mobileNav) mobileNav.classList.remove('open');
 }
 
 // Smooth scroll for anchor links
