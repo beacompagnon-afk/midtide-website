@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of Service | MidTide</title>
+<meta name="description" content="MidTide Terms of Service — the rules for using MidTide.">
+<style>
+/* Self-hosted fonts — no Google CDN calls (GDPR compliant) */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('fonts/dm-sans-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'DM Sans';
+  font-style: italic;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('fonts/dm-sans-latin-italic.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Fraunces';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('fonts/fraunces-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Fraunces';
+  font-style: italic;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('fonts/fraunces-latin-italic.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --coral:#FF8A65;--coral-dark:#E57350;--coral-light:#FFAB91;
+  --peach:#FFB74D;--peach-light:#FFD180;
+  --teal:#26C6DA;--teal-dark:#00ACC1;--teal-light:#4DD0E1;
+  --dark:#2A2A2A;--gray:#757575;--light-gray:#B0B0B0;
+  --bg:#FAFAFA;--warm:#FFF8F0;--surface:#FFFFFF;--surface-warm:#F5F0EB;
+  --font-display:'Fraunces',Georgia,serif;
+  --font-body:'DM Sans',-apple-system,sans-serif;
+}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:var(--font-body);color:var(--dark);background:var(--bg);overflow-x:hidden;line-height:1.7}
+a{color:var(--teal-dark);text-decoration:none}
+a:hover{text-decoration:underline}
+
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  background:rgba(255,255,255,0.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(0,0,0,0.04);
+}
+.nav-inner{
+  max-width:1200px;margin:0 auto;padding:0 24px;
+  display:flex;align-items:center;justify-content:space-between;height:72px;
+}
+.nav-logo{display:flex;align-items:center;gap:0}
+.nav-logo svg{height:36px;width:auto}
+.nav-back{font-size:15px;font-weight:500;color:var(--gray);transition:color 0.2s}
+.nav-back:hover{color:var(--dark);text-decoration:none}
+
+.legal-header{
+  padding:120px 0 48px;
+  background:linear-gradient(180deg,var(--warm) 0%,var(--bg) 100%);
+}
+.legal-header h1{
+  font-family:var(--font-display);font-size:clamp(32px,5vw,48px);
+  font-weight:600;letter-spacing:-0.5px;line-height:1.2;color:var(--dark);
+  margin-bottom:8px;
+}
+.legal-header .updated{font-size:15px;color:var(--gray)}
+.legal-body{max-width:760px;margin:0 auto;padding:0 24px 100px}
+.legal-body h2{
+  font-family:var(--font-display);font-size:24px;font-weight:600;
+  color:var(--dark);margin:48px 0 16px;letter-spacing:-0.3px;
+}
+.legal-body h2:first-child{margin-top:0}
+.legal-body h3{
+  font-family:var(--font-display);font-size:18px;font-weight:600;
+  color:var(--dark);margin:32px 0 12px;
+}
+.legal-body p{margin-bottom:16px;color:var(--dark);font-size:16px;line-height:1.75}
+.legal-body ul{margin:0 0 16px 24px;color:var(--dark);font-size:16px;line-height:1.75}
+.legal-body ol{margin:0 0 16px 24px;color:var(--dark);font-size:16px;line-height:1.75}
+.legal-body li{margin-bottom:8px}
+.legal-body .highlight-box{
+  background:var(--surface-warm);border-left:3px solid var(--coral);
+  padding:20px 24px;border-radius:0 12px 12px 0;margin:24px 0;
+}
+.legal-body .highlight-box p{margin-bottom:0}
+.legal-body .address{font-style:normal;line-height:1.75;margin-bottom:16px}
+
+footer{
+  background:var(--dark);color:rgba(255,255,255,0.6);
+  padding:40px 0;text-align:center;font-size:14px;
+}
+footer a{color:rgba(255,255,255,0.8)}
+footer a:hover{color:white}
+.footer-links{display:flex;justify-content:center;gap:24px;margin-bottom:16px}
+
+@media(max-width:600px){
+  .legal-body h2{font-size:20px;margin-top:36px}
+  .legal-body{padding:0 20px 60px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <svg viewBox="0 0 180 50" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="nav-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#FF8A65"/>
+            <stop offset="100%" stop-color="#FFB74D"/>
+          </linearGradient>
+        </defs>
+        <path d="M 10 30 Q 25 15, 40 30 T 70 30" stroke="url(#nav-grad)" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+        <text x="78" y="34" font-family="'Fraunces',Georgia,serif" font-size="22" font-weight="600" fill="#2A2A2A">MidTide</text>
+      </svg>
+    </a>
+    <a href="/" class="nav-back">&larr; Back to home</a>
+  </div>
+</nav>
+
+<!-- HEADER -->
+<div class="legal-header">
+  <div class="legal-body">
+    <h1>Terms of Service</h1>
+    <p class="updated">Last updated: April 2, 2026</p>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="legal-body">
+
+  <div class="highlight-box">
+    <p><strong>The short version:</strong> MidTide is a peer-support app for people going through perimenopause. It is not a medical service. Some features require a paid subscription. Be kind to other users. You can leave at any time by deleting your account.</p>
+  </div>
+
+  <h2>Agreement</h2>
+  <p>By creating a MidTide account or using the MidTide app, you agree to these Terms of Service ("Terms"). If you do not agree, do not use MidTide.</p>
+  <p>MidTide is operated by Phoenix TMS LLC, a Wyoming limited liability company ("we," "us," "our").</p>
+  <p class="address">
+    Phoenix TMS LLC<br>
+    1021 E Lincoln Way, Suite 413A #5823<br>
+    Cheyenne, WY 82001<br>
+    United States
+  </p>
+
+  <h2>What MidTide is (and isn't)</h2>
+  <p>MidTide is a peer-support and self-tracking app for people experiencing perimenopause. It helps you track symptoms, connect with others in a similar stage, and access educational content.</p>
+  <p>MidTide is <strong>not</strong> a medical service. Nothing in the app, including articles, symptom tracking, dashboard insights, or conversations with other users, constitutes medical advice, diagnosis, or treatment. Always consult a qualified healthcare provider for medical decisions. If you are experiencing a medical emergency, contact your local emergency services immediately.</p>
+
+  <h2>Your account</h2>
+  <p>You need an account to use MidTide. You are responsible for keeping your login credentials secure. You agree to provide accurate information during signup. Your profile data is used to match you with peers, so inaccurate information degrades the experience for everyone.</p>
+  <p>You must be at least 18 years old to use MidTide. We verify this through self-certification during signup.</p>
+  <p>You can delete your account at any time using the "Delete Account" button in Settings. This permanently removes your profile, check-ins, messages, and all associated data. Deleting your account also cancels your access to paid features, but does not automatically cancel your subscription with Apple or Google. See the Subscriptions section below for how to cancel.</p>
+
+  <h2>Free and paid features</h2>
+  <p>MidTide offers both free and paid features.</p>
+  <p><strong>Free features</strong> include daily check-ins, educational articles, and community rooms.</p>
+  <p><strong>Paid features</strong> require an active subscription and include PeerMatch (peer matching based on your symptoms and stage), dashboard insights and pattern detection, and the "Export for Doctor" PDF report. We may change which features are free or paid as the app develops. If a feature you currently use for free becomes paid, we will notify you in advance.</p>
+
+  <h2>Subscriptions and payments</h2>
+  <p>MidTide subscriptions are available as monthly ($3.99/month) or annual ($39.99/year) plans. Prices may change. We will notify you before any price increase takes effect on your next billing cycle.</p>
+
+  <h3>How billing works</h3>
+  <ul>
+    <li>Subscriptions are purchased through the Apple App Store or Google Play Store. All payment processing is handled by Apple or Google. We never see or store your credit card or payment information.</li>
+    <li>Your subscription automatically renews at the end of each billing period unless you cancel at least 24 hours before the renewal date.</li>
+    <li>You can manage or cancel your subscription at any time through your device's subscription settings (Apple: Settings > Apple ID > Subscriptions; Google: Google Play > Payments &amp; subscriptions > Subscriptions). Cancelling through the MidTide app or deleting your account does not cancel your subscription with Apple or Google.</li>
+    <li>If you cancel, you retain access to paid features until the end of your current billing period. After that, your account reverts to free features. Your data is not deleted.</li>
+  </ul>
+
+  <h3>Refunds</h3>
+  <p>Refund requests are handled by Apple or Google according to their respective refund policies. We do not process refunds directly. If you believe you were charged in error, contact Apple Support or Google Play Support.</p>
+
+  <h3>Free trials</h3>
+  <p>If we offer a free trial, you will not be charged during the trial period. At the end of the trial, your subscription converts to a paid subscription at the listed price unless you cancel before the trial ends.</p>
+
+  <h2>How you can use MidTide</h2>
+  <p>You agree to use MidTide for its intended purpose: peer support, self-tracking, and educational content related to perimenopause. You agree not to:</p>
+  <ul>
+    <li>Harass, bully, threaten, or intimidate other users.</li>
+    <li>Share another user's personal information outside the app without their consent.</li>
+    <li>Impersonate another person or misrepresent your identity.</li>
+    <li>Post spam, advertisements, or promotional content in messages or community rooms.</li>
+    <li>Provide medical advice or present yourself as a healthcare professional (unless you are one and clearly identify yourself as such).</li>
+    <li>Use the app for any illegal purpose.</li>
+    <li>Attempt to access another user's account, or reverse-engineer, decompile, or tamper with the app.</li>
+  </ul>
+  <p>We reserve the right to suspend or terminate your account if you violate these Terms. If your account is terminated for a violation, you are not entitled to a refund for any remaining subscription period.</p>
+
+  <h2>Community rooms and messages</h2>
+  <p>MidTide includes community rooms (group chats on specific topics) and private messaging between matched users. When you post in a community room, your message is visible to all other users in that room. When you send a private message, it is visible only to you and the recipient.</p>
+  <p>You are responsible for what you share. Do not share information you would not want other users to see. While we take reasonable steps to secure the app, no system is completely immune to breaches.</p>
+  <p>We do not actively monitor private messages. We may review community room content or messages that are reported to us for moderation purposes.</p>
+
+  <h2>Your content</h2>
+  <p>You retain ownership of everything you post or share in MidTide (messages, photos, check-in data, profile information). By using the app, you grant us a limited license to store, display, and transmit your content as needed to operate the service. For example: delivering your messages to recipients, displaying your profile to potential matches, and showing your check-in data on your own dashboard.</p>
+  <p>We do not use your content for advertising, and we do not sell it to third parties.</p>
+
+  <h2>Intellectual property</h2>
+  <p>The MidTide app, website, brand, logo, design, articles, and code are owned by Phoenix TMS LLC. You may not copy, modify, or distribute any part of MidTide without our written permission.</p>
+
+  <h2>Availability</h2>
+  <p>We do our best to keep MidTide running, but we cannot guarantee uninterrupted access. The app may be temporarily unavailable due to maintenance, updates, server issues, or circumstances beyond our control. We are not liable for any losses resulting from downtime. If the app is unavailable for an extended period, we will not automatically extend your subscription, but you may be eligible for a refund from Apple or Google under their policies.</p>
+
+  <h2>Limitation of liability</h2>
+  <p>To the maximum extent permitted by applicable law:</p>
+  <ul>
+    <li>MidTide is provided "as is" and "as available," without warranties of any kind, whether express or implied.</li>
+    <li>We do not guarantee that the app will be error-free, secure, or available at any particular time.</li>
+    <li>We are not liable for any decisions you make based on information in the app, including symptom data, dashboard insights, or content shared by other users.</li>
+    <li>Our total liability to you for any claim arising from your use of MidTide is limited to the amount you paid us in the 12 months before the claim arose.</li>
+  </ul>
+  <p>Nothing in these Terms excludes or limits liability that cannot be excluded under applicable law, including liability for fraud, death, or personal injury caused by negligence.</p>
+
+  <h2>Indemnification</h2>
+  <p>To the extent permitted by applicable law, you agree to indemnify and hold harmless Phoenix TMS LLC from any claims, damages, or expenses arising from your use of MidTide or your violation of these Terms. This clause does not apply where prohibited by consumer protection laws in your jurisdiction.</p>
+
+  <h2>Changes to these Terms</h2>
+  <p>We may update these Terms from time to time. If we make material changes, we will notify you through the app or by email at least 30 days before the changes take effect. Continued use of MidTide after changes take effect means you accept the updated Terms. If you do not agree with the changes, you can delete your account before they take effect.</p>
+
+  <h2>Governing law</h2>
+  <p>These Terms are governed by the laws of the State of Wyoming, United States, without regard to conflict of law principles. Any disputes will be resolved in the courts of Wyoming, unless you are located in the EU or UK, in which case you retain the right to bring a claim in your local courts under local consumer protection laws.</p>
+
+  <h2>Severability</h2>
+  <p>If any part of these Terms is found to be unenforceable, the remaining parts continue to apply in full.</p>
+
+  <h2>Contact</h2>
+  <p>Questions about these Terms? Reach out:</p>
+  <p>
+    Béa Compagnon, Founder<br>
+    Phoenix TMS LLC<br>
+    1021 E Lincoln Way, Suite 413A #5823<br>
+    Cheyenne, WY 82001, United States<br>
+    <a href="mailto:bea@mid-tide.app">bea@mid-tide.app</a>
+  </p>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-links">
+    <a href="/privacy.html">Privacy Policy</a>
+    <a href="/terms.html">Terms of Service</a>
+    <a href="mailto:bea@mid-tide.app">Contact</a>
+  </div>
+  <p>&copy; 2026 Phoenix TMS LLC. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
