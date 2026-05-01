@@ -7,6 +7,29 @@
 <meta name="google-site-verification" content="4F4vCiKFfnkPcYmNJKTjomuM9btV4A6AGIq_GFhTIFA" />
 <title>MidTide | Navigating Perimenopause Together</title>
 <meta name="description" content="MidTide connects women navigating perimenopause through peer support, symptom tracking, and expert content. Free on iOS and Android.">
+<meta name="theme-color" content="#FDDECF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E0E1A" media="(prefers-color-scheme: dark)">
+
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MidTide">
+<meta property="og:url" content="https://mid-tide.app/">
+<meta property="og:title" content="MidTide | Navigating Perimenopause Together">
+<meta property="og:description" content="Peer support, symptom tracking, and pattern detection for women navigating perimenopause. Free on iOS and Android.">
+<meta property="og:image" content="https://mid-tide.app/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Navigating perimenopause together. Free on iOS and Android.">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MidTide | Navigating Perimenopause Together">
+<meta name="twitter:description" content="Peer support, symptom tracking, and pattern detection for women navigating perimenopause. Free on iOS and Android.">
+<meta name="twitter:image" content="https://mid-tide.app/assets/og-image.png">
+<meta name="twitter:image:alt" content="Navigating perimenopause together. Free on iOS and Android.">
 <style>
 /* Self-hosted fonts — no Google CDN calls (GDPR compliant) */
 @font-face {
@@ -49,8 +72,13 @@
   --coral:#E8927C;--coral-dark:#D07A68;--coral-light:#F0ADA0;
   --peach:#FDDECF;--peach-light:#FEE8DC;
   --teal:#5BA4A4;--teal-dark:#4A8F8F;--teal-light:#7BB8B8;
-  --dark:#1A1A2E;--gray:#757575;--light-gray:#B0B0B0;
+  --amber:#C9824C;--amber-light:#E0A06D;
+  --dark:#1A1A2E;--gray:#5F5F5F;--light-gray:#A0A0A0;
+  --text:#1A1A2E;--text-muted:#5F5F5F;
   --bg:#FAFAFA;--warm:#FFF8F0;--surface:#FFFFFF;--surface-warm:#F5F0EB;
+  --card-border:rgba(0,0,0,0.06);--card-border-soft:rgba(0,0,0,0.03);
+  --accent-soft-teal:rgba(91,164,164,0.10);
+  --hero-mid:#FFF5EE;
   --grad-coral:linear-gradient(135deg,#E8927C,#F0ADA0);
   --grad-teal:linear-gradient(135deg,#5BA4A4,#7BB8B8);
   --shadow-sm:0 2px 8px rgba(0,0,0,0.06);
@@ -61,7 +89,7 @@
   --font-body:'DM Sans',-apple-system,sans-serif;
 }
 html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
-body{font-family:var(--font-body);color:var(--dark);background:var(--bg);overflow-x:hidden;line-height:1.6}
+body{font-family:var(--font-body);color:var(--text);background:var(--bg);overflow-x:hidden;line-height:1.6}
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
 
@@ -77,7 +105,7 @@ a{color:inherit;text-decoration:none}
 .section-title{
   font-family:var(--font-display);font-size:clamp(32px,5vw,52px);
   font-weight:600;letter-spacing:-1px;line-height:1.15;
-  color:var(--dark);margin-bottom:20px;
+  color:var(--text);margin-bottom:20px;
 }
 .section-subtitle{
   font-size:18px;color:var(--gray);line-height:1.65;max-width:600px;
@@ -98,9 +126,13 @@ nav{
   position:fixed;top:0;left:0;right:0;z-index:1000;
   background:rgba(255,255,255,0.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
   border-bottom:1px solid rgba(0,0,0,0.04);
-  transition:box-shadow 0.3s;
+  transition:background 0.3s,box-shadow 0.3s,border-color 0.3s;
 }
-nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.06)}
+nav.scrolled{
+  background:rgba(255,255,255,0.97);
+  box-shadow:0 2px 20px rgba(0,0,0,0.06);
+  border-bottom-color:rgba(0,0,0,0.06);
+}
 .nav-inner{
   max-width:1200px;margin:0 auto;padding:0 24px;
   display:flex;align-items:center;justify-content:space-between;height:72px;
@@ -109,7 +141,7 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.06)}
 .nav-logo svg{height:36px;width:auto}
 .nav-links{display:flex;align-items:center;gap:32px}
 .nav-links a{font-size:15px;font-weight:500;color:var(--gray);transition:color 0.2s}
-.nav-links a:hover{color:var(--dark)}
+.nav-links a:hover{color:var(--text)}
 .nav-cta{
   display:inline-flex;align-items:center;
   padding:10px 24px;border-radius:100px;
@@ -120,7 +152,7 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.06)}
 }
 .nav-cta:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(232,146,124,0.4)}
 .mobile-menu-btn{display:none;background:none;border:none;cursor:pointer;padding:8px}
-.mobile-menu-btn span{display:block;width:24px;height:2px;background:var(--dark);margin:5px 0;transition:0.3s}
+.mobile-menu-btn span{display:block;width:24px;height:2px;background:var(--text);margin:5px 0;transition:0.3s}
 
 /* Mobile menu panel */
 .mobile-nav{
@@ -135,7 +167,7 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.06)}
 .mobile-nav.open{display:flex;flex-direction:column;gap:4px;transform:translateY(0);opacity:1}
 .mobile-nav a{
   display:block;padding:14px 16px;border-radius:12px;
-  font-size:16px;font-weight:500;color:var(--dark);
+  font-size:16px;font-weight:500;color:var(--text);
   transition:background 0.2s;
 }
 .mobile-nav a:hover{background:var(--surface-warm)}
@@ -153,7 +185,7 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.06)}
 /* ── HERO ───────────────────────────────────────────────────── */
 .hero{
   position:relative;padding:160px 0 120px;
-  background:linear-gradient(175deg,var(--warm) 0%,#FFF5EE 30%,var(--bg) 70%);
+  background:linear-gradient(175deg,var(--warm) 0%,var(--hero-mid) 30%,var(--bg) 70%);
   overflow:hidden;
 }
 .hero::before{
@@ -185,7 +217,7 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.06)}
 .hero-title{
   font-family:var(--font-display);font-size:clamp(40px,5.5vw,64px);
   font-weight:600;line-height:1.08;letter-spacing:-2px;
-  color:var(--dark);margin-bottom:20px;
+  color:var(--text);margin-bottom:20px;
 }
 .hero-title em{font-style:italic;color:var(--coral)}
 .hero-desc{
@@ -204,21 +236,20 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.06)}
 .btn-secondary{
   display:inline-flex;align-items:center;gap:8px;
   padding:16px 28px;border-radius:100px;
-  background:transparent;color:var(--dark);
+  background:transparent;color:var(--text);
   font-family:var(--font-body);font-size:17px;font-weight:500;
-  border:1.5px solid var(--dark);cursor:pointer;
+  border:1.5px solid var(--text);cursor:pointer;
   transition:all 0.2s;
 }
-.btn-secondary:hover{background:var(--dark);color:white}
+.btn-secondary:hover{background:var(--text);color:var(--bg)}
 
 /* Hero phone mockup */
 .hero-visual{position:relative;display:flex;justify-content:center;align-items:center}
 .phone-mockup{
   width:280px;height:580px;
   background:#1a1a1a;border-radius:44px;padding:12px;
-  box-shadow:0 30px 80px rgba(0,0,0,0.15),0 0 0 1px rgba(255,255,255,0.08) inset;
+  box-shadow:0 24px 60px rgba(0,0,0,0.18),0 0 0 1px rgba(255,255,255,0.08) inset;
   position:relative;z-index:2;
-  transform:perspective(1200px) rotateY(-8deg) rotateX(4deg);
 }
 .phone-screen{
   width:100%;height:100%;border-radius:34px;overflow:hidden;
@@ -248,9 +279,9 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.06)}
 
 /* Floating badges around phone */
 .float-badge{
-  position:absolute;background:white;border-radius:14px;padding:12px 18px;
+  position:absolute;background:var(--surface);border-radius:14px;padding:12px 18px;
   box-shadow:0 8px 30px rgba(0,0,0,0.1);
-  font-size:13px;font-weight:600;
+  font-size:13px;font-weight:600;color:var(--text);
   display:flex;align-items:center;gap:8px;z-index:3;
   animation:float 4s ease-in-out infinite;
 }
@@ -261,11 +292,11 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.06)}
 }
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 .float-badge-1{top:60px;right:-20px;animation-delay:0s}
-.float-badge-1 .badge-icon{background:rgba(91,164,164,0.15)}
+.float-badge-1 .badge-icon{background:rgba(91,164,164,0.15);color:var(--teal)}
 .float-badge-2{bottom:100px;left:-30px;animation-delay:1.5s}
-.float-badge-2 .badge-icon{background:rgba(232,146,124,0.15)}
+.float-badge-2 .badge-icon{background:rgba(232,146,124,0.15);color:var(--coral)}
 .float-badge-3{bottom:180px;right:-40px;animation-delay:0.8s}
-.float-badge-3 .badge-icon{background:rgba(253,222,207,0.15)}
+.float-badge-3 .badge-icon{background:rgba(201,130,76,0.15);color:var(--amber)}
 
 /* ── STATS MARQUEE ──────────────────────────────────────────── */
 .stats-bar{
@@ -297,7 +328,7 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.06)}
 .problem-quote{
   font-family:var(--font-display);font-size:clamp(24px,3vw,36px);
   font-weight:400;line-height:1.4;letter-spacing:-0.5px;
-  color:var(--dark);position:relative;padding-left:32px;
+  color:var(--text);position:relative;padding-left:32px;
 }
 .problem-quote::before{
   content:'';position:absolute;left:0;top:4px;bottom:4px;
@@ -307,8 +338,8 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.06)}
 .problem-cards{display:grid;gap:16px;margin-top:48px}
 .problem-card{
   display:flex;align-items:flex-start;gap:16px;
-  background:white;border-radius:16px;padding:24px;
-  box-shadow:var(--shadow-sm);border:1px solid rgba(0,0,0,0.03);
+  background:var(--surface);border-radius:16px;padding:24px;
+  box-shadow:0 4px 14px rgba(0,0,0,0.06);border:1px solid var(--card-border);
   transition:transform 0.3s,box-shadow 0.3s;
 }
 .problem-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
@@ -332,8 +363,8 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.06)}
 .features-header{text-align:center;margin-bottom:72px}
 .pillar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
 .pillar{
-  background:white;border-radius:24px;padding:40px 32px;
-  border:1px solid rgba(0,0,0,0.04);
+  background:var(--surface);border-radius:24px;padding:40px 32px;
+  border:1px solid var(--card-border-soft);
   position:relative;overflow:hidden;
   transition:transform 0.3s,box-shadow 0.3s;
   display:flex;flex-direction:column;
@@ -344,15 +375,15 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.06)}
 }
 .pillar:nth-child(1)::before{background:var(--grad-teal)}
 .pillar:nth-child(2)::before{background:var(--grad-coral)}
-.pillar:nth-child(3)::before{background:linear-gradient(135deg,var(--peach),var(--peach-light))}
+.pillar:nth-child(3)::before{background:linear-gradient(135deg,var(--amber),var(--amber-light))}
 .pillar-icon{
   width:64px;height:64px;border-radius:18px;
   display:flex;align-items:center;justify-content:center;
   font-size:28px;margin-bottom:24px;
 }
-.pillar:nth-child(1) .pillar-icon{background:rgba(91,164,164,0.12)}
-.pillar:nth-child(2) .pillar-icon{background:rgba(232,146,124,0.12)}
-.pillar:nth-child(3) .pillar-icon{background:rgba(253,222,207,0.12)}
+.pillar:nth-child(1) .pillar-icon{background:rgba(91,164,164,0.12);color:var(--teal)}
+.pillar:nth-child(2) .pillar-icon{background:rgba(232,146,124,0.12);color:var(--coral)}
+.pillar:nth-child(3) .pillar-icon{background:rgba(201,130,76,0.12);color:var(--amber)}
 .pillar h3{
   font-family:var(--font-display);font-size:24px;font-weight:600;
   margin-bottom:12px;letter-spacing:-0.5px;
@@ -360,7 +391,7 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.06)}
 .pillar p{font-size:15px;color:var(--gray);line-height:1.65;margin-bottom:20px}
 .pillar-features{list-style:none;display:flex;flex-direction:column;gap:10px}
 .pillar-features li{
-  display:flex;align-items:center;gap:10px;font-size:14px;color:var(--dark);
+  display:flex;align-items:center;gap:10px;font-size:14px;color:var(--text);
 }
 .pillar-features li::before{
   content:'';width:20px;height:20px;border-radius:50%;flex-shrink:0;
@@ -368,7 +399,7 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.06)}
 }
 .pillar:nth-child(1) .pillar-features li::before{background:rgba(91,164,164,0.15);content:'✓';font-size:11px;font-weight:700;color:var(--teal)}
 .pillar:nth-child(2) .pillar-features li::before{background:rgba(232,146,124,0.15);content:'✓';font-size:11px;font-weight:700;color:var(--coral)}
-.pillar:nth-child(3) .pillar-features li::before{background:rgba(253,222,207,0.15);content:'✓';font-size:11px;font-weight:700;color:var(--peach)}
+.pillar:nth-child(3) .pillar-features li::before{background:rgba(201,130,76,0.15);content:'✓';font-size:11px;font-weight:700;color:var(--amber)}
 
 /* ── HOW IT WORKS ───────────────────────────────────────────── */
 .how-it-works{
@@ -401,73 +432,13 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.06)}
 }
 .step:nth-child(1) .step-num{background:rgba(91,164,164,0.12);color:var(--teal)}
 .step:nth-child(2) .step-num{background:rgba(232,146,124,0.12);color:var(--coral)}
-.step:nth-child(3) .step-num{background:rgba(253,222,207,0.12);color:var(--peach)}
+.step:nth-child(3) .step-num{background:rgba(201,130,76,0.12);color:var(--amber)}
 .step:nth-child(4) .step-num{background:rgba(91,164,164,0.12);color:var(--teal)}
 .step h4{
   font-family:var(--font-display);font-size:18px;font-weight:600;
   margin-bottom:8px;letter-spacing:-0.3px;
 }
 .step p{font-size:14px;color:var(--gray);line-height:1.55;max-width:220px;margin:0 auto}
-
-/* ── PRICING ────────────────────────────────────────────────── */
-.pricing{background:white;position:relative}
-.pricing::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:1px;
-  background:linear-gradient(90deg,transparent,rgba(0,0,0,0.06),transparent);
-}
-.pricing-cards{
-  display:grid;grid-template-columns:1fr 1fr;gap:28px;
-  max-width:800px;margin:48px auto 0;
-}
-.price-card{
-  border-radius:24px;padding:40px 32px;position:relative;
-  border:2px solid rgba(0,0,0,0.06);
-  transition:transform 0.3s,box-shadow 0.3s;
-}
-.price-card:hover{transform:translateY(-4px)}
-.price-card.featured{
-  border-color:var(--coral);
-  box-shadow:0 8px 40px rgba(232,146,124,0.15);
-}
-.price-card.featured::before{
-  content:'BEST VALUE';position:absolute;top:-14px;left:50%;transform:translateX(-50%);
-  background:var(--grad-coral);color:white;
-  font-size:11px;font-weight:700;letter-spacing:1px;
-  padding:6px 20px;border-radius:100px;white-space:nowrap;
-}
-.price-name{font-size:16px;font-weight:600;color:var(--gray);margin-bottom:8px}
-.price-amount{
-  font-family:var(--font-display);font-size:48px;font-weight:700;
-  color:var(--dark);letter-spacing:-2px;line-height:1;margin-bottom:4px;
-}
-.price-amount span{font-size:18px;font-weight:400;color:var(--gray);letter-spacing:0}
-.price-period{font-size:14px;color:var(--gray);margin-bottom:24px}
-.price-features{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:32px}
-.price-features li{
-  display:flex;align-items:center;gap:10px;font-size:14px;color:var(--dark);
-}
-.price-check{
-  width:20px;height:20px;border-radius:50%;flex-shrink:0;
-  display:flex;align-items:center;justify-content:center;font-size:11px;
-}
-.price-check.yes{background:rgba(91,164,164,0.12);color:var(--teal)}
-.price-check.no{background:rgba(0,0,0,0.04);color:var(--light-gray)}
-.price-btn{
-  display:block;width:100%;padding:14px;border-radius:100px;text-align:center;
-  font-family:var(--font-body);font-size:16px;font-weight:600;
-  border:none;cursor:pointer;transition:all 0.2s;
-}
-.price-btn.primary{
-  background:var(--grad-coral);color:white;box-shadow:var(--shadow-btn);
-}
-.price-btn.primary:hover{box-shadow:0 6px 24px rgba(232,146,124,0.4);transform:translateY(-1px)}
-.price-btn.outline{
-  background:transparent;color:var(--dark);border:1.5px solid var(--dark);
-}
-.price-btn.outline:hover{background:var(--dark);color:white}
-.price-note{
-  text-align:center;font-size:14px;color:var(--gray);margin-top:24px;
-}
 
 /* ── BETA SIGNUP ─────────────────────────────────────────────── */
 .beta-section{
@@ -507,7 +478,7 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.06)}
   display:flex;align-items:center;justify-content:center;font-size:16px;
 }
 .beta-card{
-  background:white;border-radius:24px;overflow:hidden;
+  background:var(--surface);border-radius:24px;overflow:hidden;
   box-shadow:0 20px 60px rgba(0,0,0,0.3);
 }
 .beta-card-header{
@@ -518,22 +489,45 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.06)}
   color:white;margin-bottom:4px;
 }
 .beta-card-header p{font-size:14px;color:rgba(255,255,255,0.8)}
+.download-layout{
+  max-width:640px;margin:0 auto;text-align:center;
+  position:relative;z-index:1;
+}
+.download-layout .beta-title{margin-bottom:20px}
+.download-layout .beta-desc{margin:0 auto 44px;max-width:520px}
+.download-stack{
+  display:flex;flex-direction:row;gap:20px;
+  justify-content:center;align-items:center;
+  flex-wrap:wrap;
+}
+.store-badge{
+  display:inline-block;line-height:0;
+  transition:transform 0.2s ease,filter 0.2s ease;
+}
+.store-badge:hover{transform:translateY(-2px);filter:brightness(1.08)}
+.store-badge:focus-visible{outline:2px solid var(--coral);outline-offset:4px;border-radius:10px}
+.store-badge img{display:block;height:60px;width:auto}
+.download-note{
+  margin-top:36px;font-size:14px;color:rgba(255,255,255,0.55);
+}
+.download-note a{color:var(--coral);text-decoration:none;font-weight:500}
+.download-note a:hover{text-decoration:underline}
 .beta-form{padding:32px}
 .beta-field{margin-bottom:20px}
 .beta-field label{
-  display:block;font-size:14px;font-weight:600;color:var(--dark);margin-bottom:6px;
+  display:block;font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px;
 }
 .beta-field input[type="text"],
 .beta-field input[type="email"]{
   width:100%;height:48px;border:1.5px solid #E0E0E0;border-radius:12px;
-  padding:0 16px;font-size:15px;font-family:var(--font-body);color:var(--dark);
+  padding:0 16px;font-size:15px;font-family:var(--font-body);color:var(--text);
   background:var(--bg);outline:none;transition:border-color 0.2s,box-shadow 0.2s;
 }
 .beta-field input:focus{border-color:var(--coral);box-shadow:0 0 0 3px rgba(232,146,124,0.08)}
 .beta-field input::placeholder{color:var(--light-gray)}
 .beta-field select{
   width:100%;height:48px;border:1.5px solid #E0E0E0;border-radius:12px;
-  padding:0 16px;font-size:15px;font-family:var(--font-body);color:var(--dark);
+  padding:0 16px;font-size:15px;font-family:var(--font-body);color:var(--text);
   background:var(--bg);outline:none;cursor:pointer;
   appearance:none;-webkit-appearance:none;
   background-image:url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23757575' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
@@ -547,7 +541,7 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.06)}
 .beta-chip span{
   display:inline-flex;align-items:center;padding:8px 16px;
   border-radius:100px;font-size:13px;font-weight:500;
-  border:1.5px solid #E0E0E0;color:var(--gray);background:white;
+  border:1.5px solid var(--card-border);color:var(--gray);background:var(--surface);
   transition:all 0.2s;
 }
 .beta-chip input:checked+span{
@@ -578,7 +572,7 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.06)}
 }
 .beta-success h3{
   font-family:var(--font-display);font-size:24px;font-weight:600;
-  color:var(--dark);margin-bottom:8px;
+  color:var(--text);margin-bottom:8px;
 }
 .beta-success p{font-size:15px;color:var(--gray);line-height:1.6}
 
@@ -586,6 +580,9 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.06)}
   .beta-inner{grid-template-columns:1fr;max-width:540px;margin:0 auto}
   .beta-content{text-align:center}
   .beta-desc{margin:0 auto 40px}
+}
+@media(max-width:480px){
+  .download-stack{flex-direction:column;gap:14px}
 }
 
 /* ── FOOTER ─────────────────────────────────────────────────── */
@@ -642,7 +639,6 @@ footer{
   .mobile-menu-btn{display:block}
   .stats-inner{flex-direction:column;gap:24px}
   .stat-divider{width:40px;height:1px}
-  .pricing-cards{grid-template-columns:1fr;max-width:420px}
   .beta-inner{grid-template-columns:1fr}
   .beta-card{max-width:480px;margin:0 auto}
   .footer-grid{grid-template-columns:1fr}
@@ -657,6 +653,81 @@ footer{
   .hero{padding:120px 0 80px}
   .hero-title{letter-spacing:-1px}
   .pillar{padding:28px 22px}
+}
+
+/* ── DARK MODE ──────────────────────────────────────────────── */
+@media (prefers-color-scheme: dark){
+  :root{
+    --text:#E8E6F0;
+    --text-muted:#B5B5C4;
+    --bg:#0E0E1A;
+    --warm:#1A1422;
+    --surface:#1F1F2E;
+    --surface-warm:#231C29;
+    --gray:#9DA0B0;
+    --light-gray:#6E6E80;
+    --card-border:rgba(255,255,255,0.08);
+    --card-border-soft:rgba(255,255,255,0.05);
+    --hero-mid:#1B1622;
+    --shadow-sm:0 2px 8px rgba(0,0,0,0.4);
+    --shadow-md:0 4px 20px rgba(0,0,0,0.5);
+    --shadow-lg:0 12px 40px rgba(0,0,0,0.6);
+  }
+  /* Nav: translucent dark instead of translucent white */
+  nav{
+    background:rgba(20,20,30,0.85);
+    border-bottom-color:rgba(255,255,255,0.06);
+  }
+  nav.scrolled{
+    background:rgba(20,20,30,0.97);
+    box-shadow:0 2px 20px rgba(0,0,0,0.4);
+    border-bottom-color:rgba(255,255,255,0.08);
+  }
+  .mobile-nav{
+    background:rgba(20,20,30,0.97);
+    border-bottom-color:rgba(255,255,255,0.08);
+    box-shadow:0 8px 30px rgba(0,0,0,0.5);
+  }
+  .mobile-nav a:hover{background:rgba(255,255,255,0.06)}
+
+  /* Section dividers / accent lines: invert the subtle dark line */
+  .how-it-works::before{
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,0.08),transparent);
+  }
+  /* Problem section subtle top line — coral tint, works on both */
+
+  /* Section label more visible on dark */
+  .section-label{color:var(--teal-light);background:rgba(91,164,164,0.18)}
+  /* Hero eyebrow: bump teal too */
+  .hero-eyebrow{color:var(--teal-light);background:rgba(91,164,164,0.14)}
+  .hero-eyebrow .dot{background:var(--teal-light)}
+
+  /* Inputs (currently unused but keep consistent) */
+  .beta-field input[type="text"],
+  .beta-field input[type="email"],
+  .beta-field select{
+    border-color:var(--card-border);background:var(--surface);
+  }
+  .beta-field input::placeholder{color:var(--light-gray)}
+  .beta-chip span{border-color:var(--card-border)}
+
+  /* Float badges shadow stronger on dark */
+  .float-badge{box-shadow:0 8px 30px rgba(0,0,0,0.5),0 0 0 1px rgba(255,255,255,0.04) inset}
+
+  /* Cards: lighter shadows, slight border boost */
+  .pillar{border-color:var(--card-border)}
+  .problem-card{box-shadow:0 4px 14px rgba(0,0,0,0.4)}
+  .problem-card:hover{box-shadow:var(--shadow-md)}
+
+  /* Feature phone bezel reads against dark surface */
+  .feature-phone{box-shadow:0 16px 48px rgba(0,0,0,0.5)}
+
+  /* Hero phone mockup shadow */
+  .phone-mockup{box-shadow:0 30px 80px rgba(0,0,0,0.6),0 0 0 1px rgba(255,255,255,0.08) inset}
+
+  /* Beta section retains its dark gradient — no override needed */
+  /* Footer retains var(--dark) bg — no override needed */
+  /* Stats bar retains var(--dark) bg — no override needed */
 }
 </style>
 </head>
@@ -678,13 +749,12 @@ footer{
         <circle cx="10" cy="40" r="5" fill="#E8927C"/>
         <circle cx="50" cy="40" r="5" fill="#FDDECF"/>
         <circle cx="90" cy="40" r="5" fill="#5BA4A4"/>
-        <text x="110" y="50" font-family="Fraunces, serif" font-size="34" font-weight="700" fill="#1A1A2E" letter-spacing="-1.5">MidTide</text>
+        <text x="110" y="50" font-family="Fraunces, serif" font-size="34" font-weight="700" fill="var(--text)" letter-spacing="-1.5">MidTide</text>
       </svg>
     </a>
     <div class="nav-links">
       <a href="#features">Features</a>
       <a href="#how-it-works">How It Works</a>
-      <!-- <a href="#pricing">Pricing</a> hidden during beta -->
       <a href="#download" class="nav-cta">Download</a>
     </div>
     <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu">
@@ -710,7 +780,7 @@ footer{
         Navigating<br>perimenopause<br><em>together.</em>
       </h1>
       <p class="hero-desc reveal reveal-delay-2">
-        MidTide connects you with women who truly get it. Track symptoms and habits, spot your patterns, and find people going through the same thing.
+        MidTide connects you with women who get it. Track symptoms and habits, spot your patterns, and find people going through the same thing.
       </p>
       <div class="hero-actions reveal reveal-delay-3">
         <a href="#download" class="btn-hero">
@@ -734,14 +804,18 @@ footer{
         </div>
       </div>
       <div class="float-badge float-badge-2">
-        <div class="badge-icon">&#10003;</div>
+        <div class="badge-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-11"/></svg>
+        </div>
         <div>
           <div style="font-weight:700;font-size:14px">Check-In Done</div>
           <div style="font-size:11px;color:var(--gray)">Streak: 14 days</div>
         </div>
       </div>
       <div class="float-badge float-badge-3">
-        <div class="badge-icon">&#9829;</div>
+        <div class="badge-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4-7-10a4.5 4.5 0 0 1 8-3 4.5 4.5 0 0 1 8 3c0 6-7 10-7 10z"/></svg>
+        </div>
         <div>
           <div style="font-weight:700;font-size:14px">Pattern Found</div>
           <div style="font-size:11px;color:var(--gray)">Caffeine → worse sleep</div>
@@ -765,11 +839,6 @@ footer{
     </div>
     <div class="stat-divider"></div>
     <div class="stat-item reveal reveal-delay-2">
-      <div class="stat-number">1 in 3</div>
-      <div class="stat-text">misdiagnosed before finding answers</div>
-    </div>
-    <div class="stat-divider"></div>
-    <div class="stat-item reveal reveal-delay-3">
       <div class="stat-number">60 sec</div>
       <div class="stat-text">daily check-in to start spotting your patterns</div>
     </div>
@@ -787,17 +856,21 @@ footer{
         </blockquote>
         <div class="problem-cards" style="margin-top:40px">
           <div class="problem-card reveal reveal-delay-1">
-            <div class="problem-card-icon" style="background:rgba(91,164,164,0.12)">&#129309;</div>
+            <div class="problem-card-icon" style="background:rgba(91,164,164,0.12);color:var(--teal)">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 9h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-1v3l-3-3h-2a1 1 0 0 1-1-1V10a1 1 0 0 1 1-1z"/><path d="M3 5h11a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H7l-4 4V6a1 1 0 0 1 1-1z"/></svg>
+            </div>
             <div>
               <h4>Someone who actually gets it</h4>
-              <p>MidTide matches you with women going through the same symptoms and stage. Not a forum — a real person you can message when it's 3am and you can't sleep.</p>
+              <p>MidTide matches you with women going through the same symptoms and stage. Not a forum. A real person you can message at 3am when you can't sleep.</p>
             </div>
           </div>
           <div class="problem-card reveal reveal-delay-2">
-            <div class="problem-card-icon" style="background:rgba(232,146,124,0.12)">&#128200;</div>
+            <div class="problem-card-icon" style="background:rgba(232,146,124,0.12);color:var(--coral)">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18"/><path d="M7 21V13"/><path d="M12 21V7"/><path d="M17 21V15"/></svg>
+            </div>
             <div>
               <h4>Your patterns, visible</h4>
-              <p>A 60-second daily check-in tracks mood, sleep, symptoms, and habits. Within days, the dashboard starts showing you what's connected — caffeine and sleep, stress and hot flashes, all of it.</p>
+              <p>A 60-second daily check-in tracks mood, sleep, symptoms, and habits. Within days, the dashboard starts showing you what's connected: caffeine and sleep, stress and hot flashes, all of it.</p>
             </div>
           </div>
         </div>
@@ -805,24 +878,30 @@ footer{
       <div>
         <div class="problem-cards">
           <div class="problem-card reveal reveal-delay-1">
-            <div class="problem-card-icon" style="background:rgba(253,222,207,0.12)">&#128214;</div>
+            <div class="problem-card-icon" style="background:rgba(201,130,76,0.12);color:var(--amber)">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M8 13h8"/><path d="M8 17h6"/></svg>
+            </div>
             <div>
-              <h4>Answers you can trust</h4>
-              <p>Articles sourced from medical research, not wellness blogs. HRT, sleep, brain fog, nutrition — written specifically for what you're going through.</p>
+              <h4>Real research, not wellness blogs</h4>
+              <p>Articles sourced from medical research. HRT, sleep, brain fog, nutrition. Written specifically for what you're going through.</p>
             </div>
           </div>
           <div class="problem-card reveal reveal-delay-2">
-            <div class="problem-card-icon" style="background:rgba(232,146,124,0.12)">&#128203;</div>
+            <div class="problem-card-icon" style="background:rgba(232,146,124,0.12);color:var(--coral)">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M9 13l2 2 4-4"/></svg>
+            </div>
             <div>
               <h4>Walk into your doctor's office prepared</h4>
               <p>Track your medications and supplements, then export them as a PDF for your doctor. No more scribbling a list in the waiting room.</p>
             </div>
           </div>
           <div class="problem-card reveal reveal-delay-3">
-            <div class="problem-card-icon" style="background:rgba(91,164,164,0.12)">&#128172;</div>
+            <div class="problem-card-icon" style="background:rgba(91,164,164,0.12);color:var(--teal)">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="2.5"/><circle cx="6" cy="9" r="2"/><circle cx="18" cy="9" r="2"/><path d="M9 18c0-2 1.5-3.5 3-3.5s3 1.5 3 3.5"/><path d="M3 18c0-1.7 1-3 2.5-3"/><path d="M21 18c0-1.7-1-3-2.5-3"/></svg>
+            </div>
             <div>
               <h4>A community that doesn't feel like a crowd</h4>
-              <p>Six topic rooms — sleep, hot flashes, HRT, mood, staying active, nutrition. Small enough to feel safe, focused enough to actually help.</p>
+              <p>Six topic rooms: sleep, hot flashes, HRT, mood, staying active, nutrition. Small enough to feel safe, focused enough to actually help.</p>
             </div>
           </div>
         </div>
@@ -843,18 +922,20 @@ footer{
   <div class="container">
     <div class="features-header">
       <div class="section-label reveal">What MidTide Does</div>
-      <h2 class="section-title reveal reveal-delay-1">Track it. Understand it.<br>Talk about it.</h2>
-      <p class="section-subtitle mx-auto reveal reveal-delay-2">Peer support, symptom tracking, pattern detection, and expert content — all built around perimenopause.</p>
+      <h2 class="section-title reveal reveal-delay-1">See what's happening.<br>Find someone who gets it.</h2>
+      <p class="section-subtitle mx-auto reveal reveal-delay-2">Peer support, symptom tracking, pattern detection, and expert content. All built around perimenopause.</p>
     </div>
     <div class="pillar-grid">
       <div class="pillar reveal">
-        <div class="pillar-icon">&#129309;</div>
+        <div class="pillar-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="7" cy="9" r="2.5"/><circle cx="17" cy="9" r="2.5"/><path d="M3 19c0-2.5 1.8-4.5 4-4.5s4 2 4 4.5"/><path d="M13 19c0-2.5 1.8-4.5 4-4.5s4 2 4 4.5"/></svg>
+        </div>
         <h3>PeerMatch</h3>
-        <p>Our matching algorithm connects you 1-on-1 with women who share your symptoms, stage, and location. Real connections, not forums.</p>
+        <p>Connects you 1-on-1 with women who share your symptoms, your stage, and where you live. Real connections, not forums.</p>
         <ul class="pillar-features">
           <li>Matched by symptoms, stage, and location</li>
           <li>Private 1-on-1 messaging</li>
-          <li>No public profiles — you choose who sees you</li>
+          <li>No public profiles. You choose who sees you</li>
           <li>6 community topic rooms</li>
         </ul>
         <div class="feature-phone">
@@ -864,7 +945,9 @@ footer{
         </div>
       </div>
       <div class="pillar reveal reveal-delay-1">
-        <div class="pillar-icon">&#128202;</div>
+        <div class="pillar-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18l5-5 4 3 5-7 4 5"/><circle cx="8" cy="13" r="1.5"/><circle cx="12" cy="16" r="1.5"/><circle cx="17" cy="9" r="1.5"/></svg>
+        </div>
         <h3>Track & Understand</h3>
         <p>60-second daily check-ins that track mood, sleep, energy, symptoms, caffeine, alcohol, and period. The dashboard spots patterns you'd miss on your own.</p>
         <ul class="pillar-features">
@@ -881,9 +964,11 @@ footer{
         </div>
       </div>
       <div class="pillar reveal reveal-delay-2">
-        <div class="pillar-icon">&#128218;</div>
+        <div class="pillar-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h13a1 1 0 0 1 1 1v15H7a2 2 0 0 1-2-2V4z"/><path d="M5 18a2 2 0 0 1 2-2h12"/><path d="M9 8.5h7"/><path d="M9 11.5h5"/></svg>
+        </div>
         <h3>Articles That Help</h3>
-        <p>Evidence-based articles on HRT, sleep, mood, nutrition, and exercise — sourced from medical research, not wellness blogs.</p>
+        <p>Evidence-based articles on HRT, sleep, mood, nutrition, and exercise. Sourced from medical research, not wellness blogs.</p>
         <ul class="pillar-features">
           <li>Articles sourced from SWAN, BMS, NICE</li>
           <li>Written for perimenopause specifically</li>
@@ -913,7 +998,7 @@ footer{
     <div class="text-center">
       <div class="section-label reveal">How It Works</div>
       <h2 class="section-title reveal reveal-delay-1">Up and running in minutes</h2>
-      <p class="section-subtitle mx-auto reveal reveal-delay-2">No complicated setup. No medical jargon. Just a warm, intuitive experience designed for you.</p>
+      <p class="section-subtitle mx-auto reveal reveal-delay-2">No complicated setup. No medical jargon.</p>
     </div>
     <div class="steps">
       <div class="step reveal">
@@ -940,48 +1025,6 @@ footer{
   </div>
 </section>
 
-<!-- ════ PRICING (hidden during beta — uncomment when ready to launch paid plans) ════ -->
-<section class="pricing section" id="pricing" style="display:none">
-  <div class="container">
-    <div class="text-center">
-      <div class="section-label reveal">Simple Pricing</div>
-      <h2 class="section-title reveal reveal-delay-1">Start free. Upgrade when ready.</h2>
-      <p class="section-subtitle mx-auto reveal reveal-delay-2">14-day free trial with full access. No credit card required. Cancel anytime.</p>
-    </div>
-    <div class="pricing-cards">
-      <div class="price-card reveal">
-        <div class="price-name">Monthly</div>
-        <div class="price-amount">$7.99<span>/mo</span></div>
-        <div class="price-period">Billed monthly</div>
-        <ul class="price-features">
-          <li><span class="price-check yes">&#10003;</span> Unlimited PeerMatch</li>
-          <li><span class="price-check yes">&#10003;</span> Full symptom dashboard</li>
-          <li><span class="price-check yes">&#10003;</span> Direct messaging</li>
-          <li><span class="price-check yes">&#10003;</span> 75+ expert articles</li>
-          <li><span class="price-check yes">&#10003;</span> Doctor Report PDF</li>
-          <li><span class="price-check yes">&#10003;</span> Ad-free experience</li>
-        </ul>
-        <button class="price-btn outline">Start Free Trial</button>
-      </div>
-      <div class="price-card featured reveal reveal-delay-1">
-        <div class="price-name">Annual</div>
-        <div class="price-amount">$59.99<span>/yr</span></div>
-        <div class="price-period">~$5.00/month (save 37%)</div>
-        <ul class="price-features">
-          <li><span class="price-check yes">&#10003;</span> Everything in Monthly</li>
-          <li><span class="price-check yes">&#10003;</span> Priority PeerMatch</li>
-          <li><span class="price-check yes">&#10003;</span> Early access to features</li>
-          <li><span class="price-check yes">&#10003;</span> Group chat access</li>
-          <li><span class="price-check yes">&#10003;</span> Period tracking</li>
-          <li><span class="price-check yes">&#10003;</span> Save $35.89 per year</li>
-        </ul>
-        <button class="price-btn primary">Start Free Trial</button>
-      </div>
-    </div>
-    <p class="price-note reveal">More affordable than Balance ($110/yr), Midday ($80/yr), and Flo ($60/yr).</p>
-  </div>
-</section>
-
 <!-- Wave: How It Works → Beta -->
 <div class="wave-divider" style="margin-top:-1px">
   <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
@@ -992,33 +1035,21 @@ footer{
 <!-- ════ BETA SIGNUP ════ -->
 <section class="beta-section" id="download" style="padding-top:80px">
   <div class="container">
-    <div class="beta-inner">
-      <div class="beta-content reveal">
+    <div class="download-layout">
+      <div class="reveal">
         <div class="section-label" style="background:rgba(255,255,255,0.15);color:white">Now Available</div>
         <h2 class="beta-title">Download MidTide.<br>Free on iOS and Android.</h2>
         <p class="beta-desc">Track symptoms, spot patterns, and connect with women who get it. No ads. No selling your data.</p>
       </div>
-      <div class="beta-card reveal reveal-delay-1" style="padding:48px 32px;text-align:center">
-        <div class="beta-card-header">
-          <h3>Get the app</h3>
-          <p>Available on both stores</p>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:14px;align-items:center;margin-top:24px">
-          <!-- LAUNCH DAY: Replace these buttons with official App Store + Google Play badge images.
-               Save assets/app-store-badge.svg (from developer.apple.com/app-store/marketing/guidelines/)
-               and assets/google-play-badge.png (from play.google.com/intl/en_us/badges/).
-               Then uncomment the <a><img> blocks and remove these styled links. -->
-          <a href="https://apps.apple.com/app/id6760477067" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;padding:14px 28px;border-radius:12px;background:#000;color:white;font-family:var(--font-body);font-size:15px;font-weight:600;text-decoration:none;width:100%;max-width:280px;justify-content:center">
-            <svg width="20" height="24" viewBox="0 0 20 24" fill="white"><path d="M16.5 12.6c0-2.7 2.2-4 2.3-4.1-1.3-1.9-3.2-2.1-3.9-2.2-1.7-.2-3.2 1-4.1 1s-2.1-1-3.5-1c-1.8 0-3.4 1-4.4 2.6-1.9 3.3-.5 8.1 1.3 10.8.9 1.3 2 2.7 3.4 2.7 1.4-.1 1.9-.9 3.5-.9s2.1.9 3.5.8c1.5 0 2.3-1.3 3.2-2.6 1-1.5 1.4-2.9 1.5-3 0 0-2.8-1.1-2.8-4.1zM13.9 4.3c.7-.9 1.2-2.1 1.1-3.3-1 0-2.3.7-3 1.6-.7.8-1.2 2-1.1 3.2 1.2.1 2.3-.6 3-1.5z"/></svg>
-            Download for iPhone
-          </a>
-          <a href="https://play.google.com/store/apps/details?id=com.midtide.app" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;padding:14px 28px;border-radius:12px;background:#000;color:white;font-family:var(--font-body);font-size:15px;font-weight:600;text-decoration:none;width:100%;max-width:280px;justify-content:center">
-            <svg width="20" height="22" viewBox="0 0 20 22" fill="none"><path d="M1 1l9 10L1 21" stroke="#34A853" stroke-width="2" stroke-linecap="round"/><path d="M1 1l14 8H5" fill="#FBBC04"/><path d="M1 21l14-8H5" fill="#4285F4"/><path d="M15 9l3 2-3 2" fill="#EA4335"/></svg>
-            Download for Android
-          </a>
-        </div>
-        <p class="beta-note" style="margin-top:32px">Questions? <a href="mailto:bea@mid-tide.app" style="color:var(--coral);text-decoration:none">bea@mid-tide.app</a></p>
+      <div class="download-stack reveal reveal-delay-1">
+        <a href="https://apps.apple.com/app/id6760477067" target="_blank" rel="noopener" class="store-badge" aria-label="Download MidTide on the App Store">
+          <img src="assets/app-store-badge.svg" alt="Download on the App Store" width="200" height="60">
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=com.midtide.app" target="_blank" rel="noopener" class="store-badge" aria-label="Get MidTide on Google Play">
+          <img src="assets/google-play-badge.png" alt="Get it on Google Play" width="200" height="60">
+        </a>
       </div>
+      <p class="download-note reveal reveal-delay-2">Questions? <a href="mailto:bea@mid-tide.app">bea@mid-tide.app</a></p>
     </div>
   </div>
 </section>
@@ -1042,12 +1073,11 @@ footer{
           <circle cx="90" cy="40" r="5" fill="#5BA4A4"/>
           <text x="110" y="50" font-family="Fraunces, serif" font-size="34" font-weight="700" fill="rgba(255,255,255,0.7)" letter-spacing="-1.5">MidTide</text>
         </svg>
-        <p>Peer support, symptom tracking, pattern detection, and evidence-based content for women navigating perimenopause.</p>
+        <p>An app for women navigating perimenopause. Track what you feel, find your patterns, and connect with women who get it.</p>
       </div>
       <div class="footer-col">
         <h5>Product</h5>
         <a href="#features">Features</a>
-        <!-- <a href="#pricing">Pricing</a> hidden during beta -->
         <a href="#how-it-works">How It Works</a>
         <a href="#download">Download</a>
       </div>
@@ -1065,7 +1095,13 @@ footer{
     <div class="footer-bottom">
       <span>&copy; 2026 MidTide. All rights reserved.</span>
       <div class="footer-social">
-        <a href="mailto:bea@mid-tide.app" aria-label="Email">
+        <a href="https://www.instagram.com/midtide.app/" target="_blank" rel="noopener" aria-label="MidTide on Instagram">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/company/midtide-app/" target="_blank" rel="noopener" aria-label="MidTide on LinkedIn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="mailto:bea@mid-tide.app" aria-label="Email MidTide">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg>
         </a>
       </div>
